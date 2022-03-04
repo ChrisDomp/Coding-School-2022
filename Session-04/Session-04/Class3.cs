@@ -14,6 +14,12 @@ namespace Session_04
         }
         public void GetPrimeNums(int n)
         {
+            if (n <= 0)
+            {
+                Console.WriteLine("N must be positive");
+                return ;
+            }
+
             Console.WriteLine($"Prime numbers between 1 and {n} are: ");
             
             for (int i = 1; i <= n; i++)//maybe from i = 2
