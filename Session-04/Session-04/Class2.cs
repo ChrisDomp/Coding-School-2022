@@ -24,6 +24,12 @@ namespace Session_04
             Int64 prod = 1;
             for (int i = 1; i <= n; i++)
                 prod *= i;
+            if (prod ==0)//prod > INT64.Max.Value
+            {
+                prod = Int64.MaxValue;
+                Console.WriteLine("Prod > MAX");
+            }
+               
             return prod;
             
         }
