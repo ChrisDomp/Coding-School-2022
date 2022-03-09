@@ -61,42 +61,38 @@ namespace Session_06
             this.textBox1.Text += "9";
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void buttonPlus(object sender, EventArgs e)
         {
-            //this.textBox1.Text +="+" ;
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
             count = 0;
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void buttonMinus(object sender, EventArgs e)
         {
-           // this.textBox1.Text += "-";
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
             count = 1;
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void buttonMultiply(object sender, EventArgs e)
         {
-           // this.textBox1.Text += "*";
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
             count = 2;
         }
-        private void button13_Click(object sender, EventArgs e)
+        private void buttonDivide(object sender, EventArgs e)
         {
-            //this.textBox1.Text += "/";
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
             count = 3;
         }
 
-        private void button16_Click(object sender, EventArgs e)
+        private void buttonDecimal(object sender, EventArgs e)
         {
             if(textBox1.Text==String.Empty)
                 this.textBox1.Text += "0.";
@@ -104,7 +100,7 @@ namespace Session_06
 
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void buttonPow(object sender, EventArgs e)
         {
             //this.textBox1.Text += "^";
             num1 = float.Parse(textBox1.Text);
@@ -115,7 +111,7 @@ namespace Session_06
         }
 
 
-        private void button15_Click(object sender, EventArgs e)
+        private void buttonSquareRoot(object sender, EventArgs e)
         {
             //this.textBox1.Text += "√";
             num1 = float.Parse(textBox1.Text);
@@ -125,17 +121,16 @@ namespace Session_06
             
         }
 
-        private void button17_Click(object sender, EventArgs e)
+        private void buttonEnter(object sender, EventArgs e)
         {
             
             Calculator.Calc calc = new Calculator.Calc();
             float num2 = float.Parse(textBox1.Text);
             this.textBox1.Text= Convert.ToString(calc.Compute(num1,num2,count));
-            
 
         }
 
-        private void button18_Click(object sender, EventArgs e)
+        private void buttonClear(object sender, EventArgs e)
         {
             textBox1.Clear();
         }
