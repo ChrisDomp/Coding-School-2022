@@ -102,7 +102,7 @@ namespace Session_06
 
         private void buttonPow(object sender, EventArgs e)
         {
-            //this.textBox1.Text += "^";
+            
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
@@ -113,7 +113,7 @@ namespace Session_06
 
         private void buttonSquareRoot(object sender, EventArgs e)
         {
-            //this.textBox1.Text += "√";
+            
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
