@@ -18,7 +18,7 @@ namespace Session_06
             InitializeComponent();
         }
         float num1;
-        int count;
+        int operation;
         private void button1_Click(object sender, EventArgs e)
         {
             this.textBox1.Text += "1";
@@ -66,7 +66,7 @@ namespace Session_06
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
-            count = 0;
+            operation = 0;
         }
 
         private void buttonMinus(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace Session_06
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
-            count = 1;
+            operation = 1;
         }
 
         private void buttonMultiply(object sender, EventArgs e)
@@ -82,14 +82,14 @@ namespace Session_06
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
-            count = 2;
+            operation = 2;
         }
         private void buttonDivide(object sender, EventArgs e)
         {
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
-            count = 3;
+            operation = 3;
         }
 
         private void buttonDecimal(object sender, EventArgs e)
@@ -106,7 +106,7 @@ namespace Session_06
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
-            count = 4;
+            operation = 4;
 
         }
 
@@ -117,16 +117,17 @@ namespace Session_06
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
-            count = 5;
+            operation = 5;
             
         }
 
         private void buttonEnter(object sender, EventArgs e)
         {
             
-            Calculator.Calc calc = new Calculator.Calc();
             float num2 = float.Parse(textBox1.Text);
-            this.textBox1.Text= Convert.ToString(calc.Compute(num1,num2,count));
+            Calculator.Calc calc = new Calculator.Calc();
+            double computation = calc.Compute(num1, num2, operation);
+            this.textBox1.Text= Convert.ToString(computation);
 
         }
 
