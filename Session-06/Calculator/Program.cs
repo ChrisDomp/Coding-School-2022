@@ -31,13 +31,17 @@ namespace Calculator
                     return (double)num1 / num2;
                 case 4:
                     return Math.Pow(num1,num2);
-                case 5:
-                    return Math.Sqrt(num1);
+                    
                 default:
                     return 0; 
                     
             }
 
+        }
+
+        public double Compute(float num1)
+        {
+            return Math.Sqrt(num1);
         }
     }
 }

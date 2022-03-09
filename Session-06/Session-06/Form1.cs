@@ -117,8 +117,10 @@ namespace Session_06
             num1 = float.Parse(textBox1.Text);
             textBox1.Clear();
             textBox1.Focus();
-            operation = 5;
-            
+            Calculator.Calc calc = new Calculator.Calc();
+            double computation = calc.Compute(num1);
+            this.textBox1.Text = Convert.ToString(computation);
+
         }
 
         private void buttonEnter(object sender, EventArgs e)
