@@ -17,7 +17,7 @@ namespace Calculator
         {
           
         }
-        public double Compute(float num1,float num2,int operation)
+        public double? Compute(float num1,float num2,int operation)
         {
             switch (operation)
             {
@@ -28,7 +28,9 @@ namespace Calculator
                 case 2: 
                     return num1 * num2;
                 case 3:
-                    return (double)num1 / num2;
+                    if (num2 != 0)
+                        return (double)num1 / num2;
+                    else return null;
                 case 4:
                     return Math.Pow(num1,num2);
                     

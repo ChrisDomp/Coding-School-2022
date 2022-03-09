@@ -128,14 +128,22 @@ namespace Session_06
             
             float num2 = float.Parse(textBox1.Text);
             Calculator.Calc calc = new Calculator.Calc();
-            double computation = calc.Compute(num1, num2, operation);
-            this.textBox1.Text= Convert.ToString(computation);
+            double? computation = calc.Compute(num1, num2, operation);
+            if (computation == null) 
+                this.textBox1.Text = "Cannot divide by zero!";
+            else
+                this.textBox1.Text= Convert.ToString(computation);
 
         }
 
         private void buttonClear(object sender, EventArgs e)
         {
             textBox1.Clear();
+        }
+
+        private void button0_Click(object sender, EventArgs e)
+        {
+            this.textBox1.Text += "0";
         }
     }
 }

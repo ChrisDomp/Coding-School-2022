@@ -47,6 +47,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -228,7 +229,7 @@
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(284, 323);
+            this.button18.Location = new System.Drawing.Point(396, 323);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(75, 61);
             this.button18.TabIndex = 24;
@@ -236,11 +237,22 @@
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.buttonClear);
             // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(284, 323);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 62);
+            this.button19.TabIndex = 25;
+            this.button19.Text = "0";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button0_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 421);
+            this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.button9);
@@ -288,6 +300,7 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
     }
 }
 
