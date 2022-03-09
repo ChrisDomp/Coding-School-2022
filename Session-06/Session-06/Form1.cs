@@ -98,7 +98,10 @@ namespace Session_06
 
         private void button16_Click(object sender, EventArgs e)
         {
-            //this.textBox1.Text += ".";
+            if(textBox1.Text==String.Empty)
+                this.textBox1.Text += "0.";
+            else this.textBox1.Text += ".";
+
         }
 
         private void button14_Click(object sender, EventArgs e)
