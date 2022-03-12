@@ -14,6 +14,8 @@ namespace Session_07_Library
         public Student()
         {
            RegistrationNumber = 0;
+           //Courses.Add()
+
            //Courses = null;    
         }
         public void Attend(Course course, DateTime dateTime)

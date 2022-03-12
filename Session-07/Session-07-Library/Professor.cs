@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Session_07_Library
 {
-    internal class Professor : Person
+    [Serializable]
+    public class Professor : Person
     {
         public String Rank { get; set; }
 

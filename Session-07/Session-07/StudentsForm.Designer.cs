@@ -32,19 +32,18 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
+            this.textName = new DevExpress.XtraEditors.TextEdit();
+            this.textRegNum = new DevExpress.XtraEditors.TextEdit();
+            this.textAge = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
+            this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.textName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textRegNum.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textAge.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,37 +87,29 @@
             this.simpleButton4.Text = "Delete";
             this.simpleButton4.Click += new System.EventHandler(this.simpleButtonDelete_Click);
             // 
-            // textEdit1
+            // textName
             // 
-            this.textEdit1.Location = new System.Drawing.Point(489, 28);
-            this.textEdit1.Margin = new System.Windows.Forms.Padding(5);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(156, 38);
-            this.textEdit1.TabIndex = 5;
+            this.textName.Location = new System.Drawing.Point(489, 28);
+            this.textName.Margin = new System.Windows.Forms.Padding(5);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(156, 38);
+            this.textName.TabIndex = 5;
             // 
-            // textEdit2
+            // textRegNum
             // 
-            this.textEdit2.Location = new System.Drawing.Point(489, 251);
-            this.textEdit2.Margin = new System.Windows.Forms.Padding(5);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(156, 38);
-            this.textEdit2.TabIndex = 6;
+            this.textRegNum.Location = new System.Drawing.Point(489, 183);
+            this.textRegNum.Margin = new System.Windows.Forms.Padding(5);
+            this.textRegNum.Name = "textRegNum";
+            this.textRegNum.Size = new System.Drawing.Size(68, 38);
+            this.textRegNum.TabIndex = 7;
             // 
-            // textEdit3
+            // textAge
             // 
-            this.textEdit3.Location = new System.Drawing.Point(489, 183);
-            this.textEdit3.Margin = new System.Windows.Forms.Padding(5);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(68, 38);
-            this.textEdit3.TabIndex = 7;
-            // 
-            // textEdit4
-            // 
-            this.textEdit4.Location = new System.Drawing.Point(489, 113);
-            this.textEdit4.Margin = new System.Windows.Forms.Padding(5);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(47, 38);
-            this.textEdit4.TabIndex = 8;
+            this.textAge.Location = new System.Drawing.Point(489, 113);
+            this.textAge.Margin = new System.Windows.Forms.Padding(5);
+            this.textAge.Name = "textAge";
+            this.textAge.Size = new System.Drawing.Size(47, 38);
+            this.textAge.TabIndex = 8;
             // 
             // labelControl1
             // 
@@ -164,20 +155,29 @@
             this.listBoxControl1.TabIndex = 13;
             this.listBoxControl1.SelectedIndexChanged += new System.EventHandler(this.listBoxControl1_SelectedIndexChanged);
             // 
+            // simpleButton5
+            // 
+            this.simpleButton5.Location = new System.Drawing.Point(489, 259);
+            this.simpleButton5.Margin = new System.Windows.Forms.Padding(5);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(91, 36);
+            this.simpleButton5.TabIndex = 14;
+            this.simpleButton5.Text = "Edit..";
+            // 
             // StudentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(758, 443);
+            this.Controls.Add(this.simpleButton5);
             this.Controls.Add(this.listBoxControl1);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.textEdit4);
-            this.Controls.Add(this.textEdit3);
-            this.Controls.Add(this.textEdit2);
-            this.Controls.Add(this.textEdit1);
+            this.Controls.Add(this.textAge);
+            this.Controls.Add(this.textRegNum);
+            this.Controls.Add(this.textName);
             this.Controls.Add(this.simpleButton4);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.simpleButton2);
@@ -185,10 +185,9 @@
             this.Name = "StudentsForm";
             this.Text = "Students";
             this.Load += new System.EventHandler(this.StudentsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textRegNum.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textAge.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -201,14 +200,14 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
+        private DevExpress.XtraEditors.TextEdit textName;
+        private DevExpress.XtraEditors.TextEdit textRegNum;
+        private DevExpress.XtraEditors.TextEdit textAge;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ListBoxControl listBoxControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton5;
     }
 }

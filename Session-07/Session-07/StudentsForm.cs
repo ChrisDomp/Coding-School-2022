@@ -14,12 +14,12 @@ namespace Session_07
 {
     public partial class StudentsForm : Form
     {
-       // private University _university;
+   
         public const string FILE_NAME = "students.json";
 
-        public List<Student> _students;
+        private List<Student> _students;
         private Student _selectedStudent ;
-
+        private StudentsManager studentsManager;
         #region UI Controls
         public StudentsForm()
         {
@@ -40,23 +40,37 @@ namespace Session_07
 
         private void StudentsForm_Load(object sender, EventArgs e)
         {
-            //_university = new University();
-           
-            CreateStudents();
-  
-            LoadStudentData();
+            studentsManager = new StudentsManager();
+            //studentsManager.Populate();
+            studentsManager.Load();
+            _students = studentsManager.Students;
+            _selectedStudent = studentsManager.SelectedStudent;
             ShowList();
             
         }
         private void simpleButtonNew_Click(object sender, EventArgs e)
         {
-            CreateStudent();
+            //CreateStudent();
+            //var students = new StudentsManager();
+            studentsManager.Create();
             ShowList();
+            DisplayStudent();
         }
         private void simpleButtonDelete_Click(object sender, EventArgs e)
         {
-            DeleteStudent();
+            //DeleteStudent();
+            studentsManager.Delete();
             ShowList();
+        }
+
+        private void simpleButtonSave_Click(object sender, EventArgs e)
+        {
+            //UpdateStudent();
+            //SaveStudentData();
+            studentsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), Convert.ToInt32(textRegNum.Text));
+            studentsManager.Save(); 
+
+            this.Close();
         }
         #endregion
 
@@ -71,7 +85,8 @@ namespace Session_07
             var Chris = new Student()
             {
                 RegistrationNumber = 7677,
-                Name = "Chris "
+                Name = "Chris ",
+                
             };
             var Zina = new Student()
             {
@@ -102,7 +117,7 @@ namespace Session_07
         private void SelectStudent()
         {
             //if(_selectedStudent!=null)
-            if(listBoxControl1.SelectedIndex>-1)    //listBoxControl1.SelectedIndex becomes -1 when deleting a student???
+            if(listBoxControl1.SelectedIndex!=-1)//listBoxControl1.SelectedIndex becomes -1 when deleting a student???
                 _selectedStudent = _students[listBoxControl1.SelectedIndex];            
         }
         private void ShowList()
@@ -122,26 +137,20 @@ namespace Session_07
         {
             if(_selectedStudent != null)
             {
-            textEdit1.Text = _selectedStudent.Name;
-            textEdit2.Text = _selectedStudent.Age.ToString();
-            textEdit3.Text = _selectedStudent.RegistrationNumber.ToString();
-            //textEdit4.Text = _selectedStudent.Courses.ToString();
+            textName.Text = _selectedStudent.Name;
+            textAge.Text = _selectedStudent.Age.ToString();
+            textRegNum.Text = _selectedStudent.RegistrationNumber.ToString();
+            //textAge.Text = _selectedStudent.Courses.ToString();
             }
         }
-        #endregion
+    
 
-        private void simpleButtonSave_Click(object sender, EventArgs e)
-        {
-            UpdateStudent();
-            SaveStudentData();
-            this.Close();
-        }
-       
+        #endregion
         private void UpdateStudent()
         {
-            _selectedStudent.Name = textEdit1.Text;
-            _selectedStudent.Age = Convert.ToInt32(textEdit2.Text);
-            _selectedStudent.RegistrationNumber= Convert.ToInt32(textEdit3.Text);  
+            _selectedStudent.Name = textName.Text;
+            _selectedStudent.Age = Convert.ToInt32(textAge.Text);
+            _selectedStudent.RegistrationNumber= Convert.ToInt32(textRegNum.Text);  
         }
 
 
@@ -149,7 +158,7 @@ namespace Session_07
         {
             _students.Remove(_selectedStudent);
             if(_students.Count()>0)
-            _selectedStudent = _students[0];
+            _selectedStudent = _students[_students.Count-1];
 
         }
         
@@ -157,7 +166,7 @@ namespace Session_07
         {
             var stud = new Student();
             _students.Add(stud);
-            listBoxControl1.SelectedIndex = _students.Count();
+            
         }
 
        
