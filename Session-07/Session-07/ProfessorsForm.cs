@@ -57,14 +57,16 @@ namespace Session_07
 
         private void simpleButtonSave_Click(object sender, EventArgs e)
         {
-            professorsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), textRank.Text);
+            UpdateProfessor();
+            //professorsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), textRank.Text);
             professorsManager.Save();
             this.Close();
         }
 
         private void simpleButtonDelete_Click(object sender, EventArgs e)
         {
-            professorsManager.Delete();
+            DeleteProfessor();
+            //professorsManager.Delete();
             ShowList();
         }
         #endregion
@@ -103,6 +105,18 @@ namespace Session_07
             Form f1 = new SetGradeForm( professorsManager);
             f1.Show();
 
+        }
+        public void UpdateProfessor()
+        {
+            _selectedProfessor.Name = textName.Text;
+            _selectedProfessor.Age = Convert.ToInt32(textAge.Text);
+            _selectedProfessor.Rank = textRank.Text;
+
+        }
+
+        public void DeleteProfessor()
+        {
+            _professors.Remove(_selectedProfessor); 
         }
     }
 }
