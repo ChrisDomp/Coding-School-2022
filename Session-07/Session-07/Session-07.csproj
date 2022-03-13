@@ -100,6 +100,12 @@
     <Compile Include="GradesForm.Designer.cs">
       <DependentUpon>GradesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SetGradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetGradeForm.Designer.cs">
+      <DependentUpon>SetGradeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,12 @@
     </Compile>
     <Compile Include="ProfessorsForm.Designer.cs">
       <DependentUpon>ProfessorsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentCourses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentCourses.Designer.cs">
+      <DependentUpon>StudentCourses.cs</DependentUpon>
     </Compile>
     <Compile Include="UniversityForm.cs">
       <SubType>Form</SubType>
@@ -136,8 +148,14 @@
       <DependentUpon>ProfessorsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="SetGradeForm.resx">
+      <DependentUpon>SetGradeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SheduleForm.resx">
       <DependentUpon>SheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentCourses.resx">
+      <DependentUpon>StudentCourses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StudentsForm.resx">
       <DependentUpon>StudentsForm.cs</DependentUpon>

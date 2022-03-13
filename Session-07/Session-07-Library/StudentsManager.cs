@@ -28,7 +28,8 @@ namespace Session_07_Library
             {
                 Age = 21,
                 Name = "Chris Domp",
-                RegistrationNumber = 7677
+                RegistrationNumber = 7677,
+          
             };
             Students.Add(Chris);
             Students.Add(Chris);

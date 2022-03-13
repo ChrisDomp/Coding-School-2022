@@ -41,6 +41,7 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
+            this.simpleButtonSetGrade = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.textAge.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textRank.Properties)).BeginInit();
@@ -159,11 +160,21 @@
             this.listBoxControl1.TabIndex = 25;
             this.listBoxControl1.SelectedIndexChanged += new System.EventHandler(this.listBoxControl1_SelectedIndexChanged);
             // 
+            // simpleButtonSetGrade
+            // 
+            this.simpleButtonSetGrade.Location = new System.Drawing.Point(56, 429);
+            this.simpleButtonSetGrade.Name = "simpleButtonSetGrade";
+            this.simpleButtonSetGrade.Size = new System.Drawing.Size(240, 40);
+            this.simpleButtonSetGrade.TabIndex = 26;
+            this.simpleButtonSetGrade.Text = "Set Grade..";
+            this.simpleButtonSetGrade.Click += new System.EventHandler(this.simpleButtonSetGrade_Click);
+            // 
             // ProfessorsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 489);
+            this.Controls.Add(this.simpleButtonSetGrade);
             this.Controls.Add(this.listBoxControl1);
             this.Controls.Add(this.simpleButton5);
             this.Controls.Add(this.simpleButton4);
@@ -203,5 +214,6 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton5;
         private DevExpress.XtraEditors.ListBoxControl listBoxControl1;
+        private DevExpress.XtraEditors.SimpleButton simpleButtonSetGrade;
     }
 }

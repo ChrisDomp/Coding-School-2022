@@ -17,6 +17,7 @@ namespace Session_07_Library
         {
             ID = Guid.NewGuid();
             Rank = String.Empty;
+            Courses = new List<Course>();    
         }
         public void Teach(Course course, DateTime dateTime)
         {

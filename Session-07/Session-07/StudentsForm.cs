@@ -14,11 +14,11 @@ namespace Session_07
 {
     public partial class StudentsForm : Form
     {
-   
-        public const string FILE_NAME = "students.json";
+
+        public const string FILE_NAME = "students.json";//needed for the procedural version
 
         private List<Student> _students;
-        private Student _selectedStudent ;
+        internal Student _selectedStudent; 
         private StudentsManager studentsManager;
         #region UI Controls
         public StudentsForm()
@@ -54,29 +54,46 @@ namespace Session_07
             //var students = new StudentsManager();
             studentsManager.Create();
             ShowList();
-            DisplayStudent();
+            //DisplayStudent();
         }
         private void simpleButtonDelete_Click(object sender, EventArgs e)
         {
-            //DeleteStudent();
-            studentsManager.Delete();
+            DeleteStudent();
+            //studentsManager.Delete();
             ShowList();
         }
 
         private void simpleButtonSave_Click(object sender, EventArgs e)
         {
-            //UpdateStudent();
+            UpdateStudent();
             //SaveStudentData();
-            studentsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), Convert.ToInt32(textRegNum.Text));
+            //studentsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), Convert.ToInt32(textRegNum.Text));
             studentsManager.Save(); 
-
             this.Close();
         }
+
+        private void simpleButtonEditCourses_Click(object sender, EventArgs e)
+        {
+            StudentCoursesForm form =  new StudentCoursesForm( studentsManager);
+            
+            form.Show();
+        }
+
+
         #endregion
 
 
         #region Operations
-
+        private void DisplayStudent()
+        {
+            if (_selectedStudent != null)
+            {
+                textName.Text = _selectedStudent.Name;
+                textAge.Text = _selectedStudent.Age.ToString();
+                textRegNum.Text = _selectedStudent.RegistrationNumber.ToString();
+                //textAge.Text = _selectedStudent.Courses.ToString();
+            }
+        }
 
         private void CreateStudents()
         {
@@ -133,43 +150,38 @@ namespace Session_07
             }
         }
 
-        private void DisplayStudent()
-        {
-            if(_selectedStudent != null)
-            {
-            textName.Text = _selectedStudent.Name;
-            textAge.Text = _selectedStudent.Age.ToString();
-            textRegNum.Text = _selectedStudent.RegistrationNumber.ToString();
-            //textAge.Text = _selectedStudent.Courses.ToString();
-            }
-        }
-    
-
-        #endregion
         private void UpdateStudent()
         {
             _selectedStudent.Name = textName.Text;
             _selectedStudent.Age = Convert.ToInt32(textAge.Text);
-            _selectedStudent.RegistrationNumber= Convert.ToInt32(textRegNum.Text);  
+            _selectedStudent.RegistrationNumber = Convert.ToInt32(textRegNum.Text);
         }
 
 
         private void DeleteStudent()
         {
             _students.Remove(_selectedStudent);
-            if(_students.Count()>0)
-            _selectedStudent = _students[_students.Count-1];
+            if (_students.Count() > 0)
+                _selectedStudent = _students[_students.Count - 1];
 
         }
-        
+
         private void CreateStudent()
         {
             var stud = new Student();
             _students.Add(stud);
-            
+
         }
 
-       
+
+        public Student getSelectedStudent()
+        {
+            return _selectedStudent;
+        }
+
+        #endregion
+
+
     }
 }
      

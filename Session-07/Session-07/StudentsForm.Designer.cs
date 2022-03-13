@@ -163,6 +163,7 @@
             this.simpleButton5.Size = new System.Drawing.Size(91, 36);
             this.simpleButton5.TabIndex = 14;
             this.simpleButton5.Text = "Edit..";
+            this.simpleButton5.Click += new System.EventHandler(this.simpleButtonEditCourses_Click);
             // 
             // StudentsForm
             // 

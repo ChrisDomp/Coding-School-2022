@@ -96,5 +96,13 @@ namespace Session_07
             if (listBoxControl1.SelectedIndex != -1)//listBoxControl1.SelectedIndex becomes -1 when deleting a student???
                 _selectedProfessor = _professors[listBoxControl1.SelectedIndex];
         }
+
+        private void simpleButtonSetGrade_Click(object sender, EventArgs e)
+        {   
+            
+            Form f1 = new SetGradeForm( professorsManager);
+            f1.Show();
+
+        }
     }
 }
