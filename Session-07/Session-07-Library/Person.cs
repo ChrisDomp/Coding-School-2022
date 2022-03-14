@@ -14,7 +14,7 @@ namespace Session_07_Library
         public Person()
         {
             ID = Guid.NewGuid();
-            Name = String.Empty;
+            Name = "New Name";
             Age = 0;
         }
         private string _name;

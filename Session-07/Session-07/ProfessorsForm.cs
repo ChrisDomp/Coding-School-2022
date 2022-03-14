@@ -57,16 +57,16 @@ namespace Session_07
 
         private void simpleButtonSave_Click(object sender, EventArgs e)
         {
-            UpdateProfessor();
-            //professorsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), textRank.Text);
+            //UpdateProfessor();
+            professorsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), textRank.Text);
             professorsManager.Save();
             this.Close();
         }
 
         private void simpleButtonDelete_Click(object sender, EventArgs e)
         {
-            DeleteProfessor();
-            //professorsManager.Delete();
+            //DeleteProfessor();
+            professorsManager.Delete();
             ShowList();
         }
         #endregion
@@ -96,7 +96,7 @@ namespace Session_07
         {
             //if(_selectedStudent!=null)
             if (listBoxControl1.SelectedIndex != -1)//listBoxControl1.SelectedIndex becomes -1 when deleting a student???
-                _selectedProfessor = _professors[listBoxControl1.SelectedIndex];
+                professorsManager.SelectedProfessor = _professors[listBoxControl1.SelectedIndex];
         }
 
         private void simpleButtonSetGrade_Click(object sender, EventArgs e)
@@ -116,7 +116,7 @@ namespace Session_07
 
         public void DeleteProfessor()
         {
-            _professors.Remove(_selectedProfessor); 
+            professorsManager.Professors.Remove(_selectedProfessor); 
         }
     }
 }

@@ -58,23 +58,23 @@ namespace Session_07
         }
         private void simpleButtonDelete_Click(object sender, EventArgs e)
         {
-            DeleteStudent();
-            //studentsManager.Delete();
+            //DeleteStudent();
+            studentsManager.Delete();
             ShowList();
         }
 
         private void simpleButtonSave_Click(object sender, EventArgs e)
         {
-            UpdateStudent();
+            //UpdateStudent();
             //SaveStudentData();
-            //studentsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), Convert.ToInt32(textRegNum.Text));
+            studentsManager.Update(textName.Text, Convert.ToInt32(textAge.Text), Convert.ToInt32(textRegNum.Text));
             studentsManager.Save(); 
             this.Close();
         }
 
         private void simpleButtonEditCourses_Click(object sender, EventArgs e)
         {
-            StudentCoursesForm form =  new StudentCoursesForm( studentsManager);
+            StudentCoursesForm form =  new StudentCoursesForm(studentsManager);
             
             form.Show();
         }
@@ -133,16 +133,19 @@ namespace Session_07
         }
         private void SelectStudent()
         {
-            //if(_selectedStudent!=null)
-            if(listBoxControl1.SelectedIndex!=-1)//listBoxControl1.SelectedIndex becomes -1 when deleting a student???
-                _selectedStudent = _students[listBoxControl1.SelectedIndex];            
+
+            if (listBoxControl1.SelectedIndex != -1)
+            { 
+                _selectedStudent = _students[listBoxControl1.SelectedIndex];
+                studentsManager.SelectedStudent = _selectedStudent;
+            }
         }
         private void ShowList()
         {
 
             listBoxControl1.Items.Clear();
 
-            foreach (Student item in _students)
+            foreach (Student item in studentsManager.Students)
             {
 
                 if (item != null)
@@ -173,11 +176,6 @@ namespace Session_07
 
         }
 
-
-        public Student getSelectedStudent()
-        {
-            return _selectedStudent;
-        }
 
         #endregion
 

@@ -27,7 +27,6 @@ namespace Session_07
 
         private void StudentCourses_Load(object sender, EventArgs e)
         {
-
             ShowList();
         }
         private void ShowList()

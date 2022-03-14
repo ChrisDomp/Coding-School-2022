@@ -15,20 +15,10 @@ namespace Session_07
     public partial class UniversityForm : Form
     {
 
-
-
         public UniversityForm()
         {
             InitializeComponent();
   
-        }
-
-
-
-
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //LoadStudentData();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
