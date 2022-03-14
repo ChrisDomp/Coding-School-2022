@@ -88,11 +88,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CourseForm.cs">
+    <Compile Include="CoursesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CourseForm.Designer.cs">
-      <DependentUpon>CourseForm.cs</DependentUpon>
+    <Compile Include="CoursesForm.Designer.cs">
+      <DependentUpon>CoursesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GradesForm.cs">
       <SubType>Form</SubType>
@@ -138,8 +138,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CourseForm.resx">
-      <DependentUpon>CourseForm.cs</DependentUpon>
+    <EmbeddedResource Include="CoursesForm.resx">
+      <DependentUpon>CoursesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GradesForm.resx">
       <DependentUpon>GradesForm.cs</DependentUpon>

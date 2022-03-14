@@ -8,15 +8,21 @@ namespace Session_07_Library
 {
     public abstract class ObjectManager
     {
+        private List <Object> objects = new List<Object>();
         public ObjectManager()
         {
 
         }
-        public void Populate() { }
+        //public void Populate() { }
+        public void Save() { }
         public void Load() { }
         public void Delete() { }
         public void Update() { }
-        public void Save() { }
+        //public void Create()
+       // {
+        //    objects.Add(Object);  
+       // }
+
 
     }
             

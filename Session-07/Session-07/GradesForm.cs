@@ -17,9 +17,11 @@ namespace Session_07
             InitializeComponent();
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void simpleButtonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+
     }
 }

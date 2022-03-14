@@ -14,13 +14,13 @@ namespace Session_07
 
     public partial class StudentCoursesForm : Form
     {
-        StudentsManager _studentsManager = new StudentsManager();
-        Student __selectedStudent = new Student();
-        public StudentCoursesForm(StudentsManager studentsManager)
+        StudentsManager studentsManager = new StudentsManager();
+        Student _selectedStudent = new Student();
+        public StudentCoursesForm(StudentsManager Manager)
         {
             InitializeComponent();
-            _studentsManager = studentsManager;
-            __selectedStudent = studentsManager.SelectedStudent;
+            studentsManager = Manager;
+            _selectedStudent = studentsManager.SelectedStudent;
 
 
         }
@@ -32,10 +32,10 @@ namespace Session_07
         private void ShowList()
         {
             listBoxControl1.Items.Clear();
-            if (__selectedStudent != null)
+            if (_selectedStudent != null)
             {
 
-                foreach (var item in __selectedStudent.Courses)
+                foreach (var item in _selectedStudent.Courses)
                 { 
 
                     if (item != null)

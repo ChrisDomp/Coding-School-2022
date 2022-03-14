@@ -1,6 +1,6 @@
 ﻿namespace Session_07
 {
-    partial class CourseForm
+    partial class CoursesForm
     {
         /// <summary>
         /// Required designer variable.

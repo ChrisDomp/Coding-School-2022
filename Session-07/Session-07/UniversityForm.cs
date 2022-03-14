@@ -48,7 +48,7 @@ namespace Session_07
 
         private void editToolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            Form courseForm = new CourseForm();
+            Form courseForm = new CoursesForm();
             courseForm.Show();
         }
     }
