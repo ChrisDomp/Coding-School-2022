@@ -56,8 +56,7 @@ namespace Session_07_Library
         }
         public void Delete()
         {
-            Students.Remove(SelectedStudent);
-            
+            Students.Remove(SelectedStudent);            
         }
        public void Update(string name,int age,int regNum)
         {
@@ -66,7 +65,6 @@ namespace Session_07_Library
             SelectedStudent.Name = name;
             SelectedStudent.Age = age;
             SelectedStudent.RegistrationNumber = regNum;
-            //SelectedStudent.Course
             }
         }
        public void Create()
