@@ -17,10 +17,14 @@ namespace Session_15.Model
         public Guid ManagerID { get; set; }
         public decimal TotalPrice { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
+       // public Car Car { get; set; }
+       // public Customer Customer { get; set; }
         public Transaction()
         {            
             ID = Guid.NewGuid();
             Date = DateTime.Now;
+            //Car = new Car();
+            //Customer = new Customer();
         }
         public Transaction(Guid customerID, Guid carID, Guid managerID, DateTime date)
         {   

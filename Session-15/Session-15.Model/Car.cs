@@ -13,6 +13,8 @@ namespace Session_15.Model
         public Brands Brand { get; set; }
         public string Model { get; set; }
         public string RegistrationNumber { get; set; }
+        //public Transaction Transaction { get; set; }
+        public Guid TransactionID { get; set; } 
 
         public Car()
         {

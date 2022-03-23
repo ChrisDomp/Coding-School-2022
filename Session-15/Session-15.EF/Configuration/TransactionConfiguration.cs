@@ -16,10 +16,14 @@ namespace Session_15.EF.Configuration
             builder.ToTable("Transaction");
             builder.HasKey(transaction => transaction.ID);
             builder.Property(transaction => transaction.TotalPrice);
-            //builder.HasOne(transaction =>transaction.CarID).WithOne(transactionCar => transactionCar.TransactionID).HasForeignKey<TransactionCar>(transactionCar => transactionCar.CarId);
-            //builder.HasMany(transaction => transaction.TransactionLines).WithOne(transactionTransactionLine => transactionTransactionLine.Transaction).HasForeignKey(transactionTransactionLine => transactionTransactionLine.transactionID);
 
 
+            //builder.HasMany(transaction => transaction.TransactionLines).WithOne(transactionLine => transactionLine.Transaction).HasForeignKey<TransactionLine>(transactionLine => transactionLine.TransactionID);
+            //builder.HasOne(tr => tr.Car).WithOne(c => c.Transaction).HasForeignKey<Car>(car => car.TransactionID);
+            //builder.HasOne(tr => tr.Customer).WithOne(c => c.Transaction).HasForeignKey<Customer>(customer => customer.TransactionID);
         }
+
+
     }
+    
 }
