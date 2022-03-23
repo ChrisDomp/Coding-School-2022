@@ -9,7 +9,7 @@ namespace Session_15.Model
     [Serializable]
     public class Manager : Person
     {
-        public decimal SallaryPerMonth { get; set; }        
+        public decimal SalaryPerMonth { get; set; }        
         public Manager()
         {
 

@@ -10,9 +10,9 @@ namespace Session_15.EF
         {
             builder.ToTable("Car");
             builder.HasKey(car => car.ID);
-            builder.Property(car => car.Brand).HasMaxLength(100);
+            builder.Property(car => car.Brand);
             builder.Property(car => car.Model).HasMaxLength(100);
-            builder.Property(car => car.RegistrationNumber);
+            builder.Property(car => car.RegistrationNumber).HasMaxLength(100);
 
         }
 

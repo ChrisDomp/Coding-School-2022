@@ -9,7 +9,7 @@ namespace Session_15.Model
     public class Engineer : Person
     {
         public Guid ManagerID { get; set; }
-        public decimal SallaryPerMonth { get; set; }
+        public decimal SalaryPerMonth { get; set; }
 
         public Engineer(Guid managerID)
         {
