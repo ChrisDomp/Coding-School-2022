@@ -1,0 +1,10 @@
+﻿1.
+2.image/jpeg
+3.Cache-Control: max-age=86400
+4.NAI	
+5.NAI
+6.400
+7.500( or 503? maybe..)
+8.ΟΧΙ ΑΛΛΑ ΜΕ POST ΜΠΟΡΩ
+9.POST->CREATE / PUT->UPDATE
+10.POST METHOD
