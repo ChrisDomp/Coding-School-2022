@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        function reverseString(s) {
+            let reversedString = '';
+            for (let i = 0; i < s.length; i++) {
+                reversedString += s[s.length - 1 - i];
+            }
+            console.log(reversedString)
+        }
+
+        function isPalindrome(s) {
+
+            for (let i = 0; i < s.length; i++) {
+                if (s[i] !== s[s.length - 1 - i]) {
+                    console.log('False');
+                    return;
+                }
+            }
+            console.log('True')
+        }
+        function multiply(a,b){
+            if((typeof(a)||typeof(b))===typeof(1))
+                return a*b;
+            console.log("Args must be numbers!");
+            return ;
+            
+        }
+
+        function myFunc(s){
+            if(typeof(s)!==typeof("")){
+                console.log('This is not a string')
+                return;
+            }
+            if(+s[s.length-1]==typeof(1)){
+                s[s.length-1]= +s[s.length-1] + 1;
+                console.log(s);
+                return;
+            }
+            s+=1;
+            console.log(s);       
+        
+        }
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
