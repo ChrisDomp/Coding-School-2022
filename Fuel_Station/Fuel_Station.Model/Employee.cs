@@ -8,15 +8,17 @@ namespace Fuel_Station.Model
 {
     public class Employee : Person
     {
-        public DateTime HireDateStart { get; set; }
+        public DateTime? HireDateStart { get; set; }
         public DateTime? HireDateEnd { get; set; }
         public decimal SalaryPerMonth { get; set; }
         public EmployeeType EmployeeType { get; set; }
-        public Transaction Transaction { get; set; }
+
+        //Νavigation property
+        public Transaction? Transaction { get; set; }
 
         public Employee()
         {
-
+            ID = Guid.NewGuid();
         }
     }
 }
