@@ -1,0 +1,111 @@
+﻿@page "/itemlist/edit/{Id:guid?}"
+@using Fuel_Station.Blazor.Shared
+@using Fuel_Station.Model
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+<PageTitle>Item</PageTitle>
+
+@if (Item == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+    @if (Id == null)
+    {
+        <h2>Add new Item</h2>
+    }
+    else
+    {
+        <h2>Edit item : @($"{Item.Description}")</h2>
+    }
+    @if (ShowingErrorMessages)
+    {
+        <div class="row">
+            <div class="alert alert-info" role="alert">
+                <p>There was an error with the input fields.</p>
+                <p>Please make sure that you have enter all the values correctly.</p>
+            </div>
+        </div>
+    }
+   <div class="row">
+        <div class="col-md-3">
+            <label class="form-label">Description</label>
+            <input class="form-control" @bind="@Item.Description" />
+        </div>
+        <div class="col-md-3">
+            <label for="item-type">Type</label>
+            <select name="item-type" class="form-select" @bind="ItemType">
+                <option value="-1">Select Item Type</option>
+                @foreach (var item in Enum.GetValues(typeof(ItemType)))
+                {
+                    <option value="@((int)item)">@item.ToString()</option>
+                }
+            </select>
+        </div>
+                <div class="col-md-3">
+                <label class="form-label">Cost</label>
+                <input class="form-control" @bind="@Item.Cost" />
+        </div>
+         <div class="col-md-3">
+                <label class="form-label">Price</label>
+                <input class="form-control" @bind="@Item.Price" />
+        </div>
+    </div> 
+    <div class="row mt-2">
+        <div class="col">
+            <button class="btn btn-success" @onclick="OnSave">Save</button>
+            <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+        </div>
+    </div>
+
+}
+
+
+@code {
+    [Parameter] public Guid? Id { get; set ; }
+
+    ItemEditViewModel Item = new ItemEditViewModel();
+    private int ItemType { get; set; } = -1;
+    private bool ShowingErrorMessages = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id == null)
+        {
+            Id = Guid.Empty;
+        }
+        Item = await httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{Id}");
+         if(Id != null)
+        {
+            ItemType = (int)Item.ItemType;
+        }
+    }
+    protected async Task OnSave()
+    {
+        if (string.IsNullOrEmpty(Item.Description)||
+            Item.Price<=0 || Item.Cost<=0||(int)Item.ItemType==-1)
+        {
+            ShowingErrorMessages = true;
+            return;
+        }
+        ShowingErrorMessages = false;
+        HttpResponseMessage response;
+        Item.ItemType = (ItemType)ItemType;
+        if (Id == Guid.Empty)
+        {
+            response = await httpClient.PostAsJsonAsync("Item", Item);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("Item", Item);
+        }
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("itemlist");
+    }
+    protected void OnCancel()
+    {
+        navigationManager.NavigateTo("itemlist");
+    }
+}
