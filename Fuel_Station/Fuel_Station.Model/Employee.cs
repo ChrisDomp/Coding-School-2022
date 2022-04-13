@@ -14,7 +14,7 @@ namespace Fuel_Station.Model
         public EmployeeType EmployeeType { get; set; }
 
         //Νavigation property
-        public Transaction? Transaction { get; set; }
+        //public Transaction? Transaction { get; set; }
 
         public Employee()
         {

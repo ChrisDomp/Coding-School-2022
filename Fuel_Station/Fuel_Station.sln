@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuel_Station.Blazor.Client"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuel_Station.Blazor.Shared", "Fuel_Station.Blazor\Shared\Fuel_Station.Blazor.Shared.csproj", "{0B77CA33-E1E6-4A23-952F-0D9C4D1D14EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuel_Station.Win.Client", "Fuel_Station.Win.Client\Fuel_Station.Win.Client.csproj", "{627D611E-CD9C-4EDA-8809-7F65702A178F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0B77CA33-E1E6-4A23-952F-0D9C4D1D14EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B77CA33-E1E6-4A23-952F-0D9C4D1D14EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B77CA33-E1E6-4A23-952F-0D9C4D1D14EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{627D611E-CD9C-4EDA-8809-7F65702A178F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{627D611E-CD9C-4EDA-8809-7F65702A178F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{627D611E-CD9C-4EDA-8809-7F65702A178F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{627D611E-CD9C-4EDA-8809-7F65702A178F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

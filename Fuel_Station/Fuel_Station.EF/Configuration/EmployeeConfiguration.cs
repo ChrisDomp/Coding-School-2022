@@ -25,9 +25,9 @@ namespace Fuel_Station.EF.Configuration
             builder.Property(employee => employee.HireDateStart);
             builder.Property(employee => employee.HireDateEnd);
 
-            builder.HasOne(employee => employee.Transaction)
-                   .WithOne(transaction => transaction.Employee)
-                   .HasForeignKey<Transaction>(transaction => transaction.ID);
+            //builder.HasOne(employee => employee.Transaction)
+            //       .WithOne(transaction => transaction.Employee)
+            //       .HasForeignKey<Transaction>(transaction => transaction.ID);
 
         }
     }
