@@ -50,7 +50,7 @@ namespace Fuel_Station.Win.Client
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (DialogResult.No == MessageBox.Show("Do You Want Delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 return;
             var itemToDeleteId = (Guid)GVCustomers.SelectedRows[0].Cells[0].Value;
             _customerRepo.DeleteAsync(itemToDeleteId);

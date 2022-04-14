@@ -12,13 +12,51 @@ using System.Windows.Forms;
 
 namespace Fuel_Station.Win.Client
 {
+  
     public partial class ItemEditForm : Form
     {
-        public ItemEditForm(IEntityRepo<Item> itemRepo,State state)
+        private readonly IEntityRepo<Item> _itemRepo;
+        private readonly State _state;
+        private Item _itemToEdit;
+        public ItemEditForm(IEntityRepo<Item> itemRepo,State state, Item itemToEdit)
         {
             InitializeComponent();
+            _itemRepo = itemRepo;
+            _state = state; 
+            _itemToEdit = itemToEdit;  
         }
+        public ItemEditForm(IEntityRepo<Item> itemRepo, State state)
+        {
+            InitializeComponent();
+            _itemRepo = itemRepo;
+            _state = state;
+        }
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (_state == State.New)
+            {
+                if (string.IsNullOrEmpty(txtDescription.Text))
+                    return;
+                var newItem = new Item()
+                {
+                    Description = txtDescription.Text,
+                    ItemType = 0,
+                    Cost = spinEditCost.Value,
+                    Price = spinEditPrice.Value,
+                };
+                _itemRepo.CreateAsync(newItem);
 
+            }
+            if (_state == State.Edit)
+            {
+                _itemToEdit.Description = txtDescription.Text;
+                _itemToEdit.Cost = spinEditCost.Value;
+                _itemToEdit.Price = spinEditPrice.Value;
+                _itemRepo.UpdateAsync(_itemToEdit.ID, _itemToEdit);
+            }
+            this.Close();
+
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();

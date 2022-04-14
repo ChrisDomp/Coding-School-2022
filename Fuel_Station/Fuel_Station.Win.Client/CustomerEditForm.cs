@@ -35,7 +35,7 @@ namespace Fuel_Station.Win.Client
         {
             if (_state == State.New)
             {
-                if (string.IsNullOrEmpty(textName.ToString()) || String.IsNullOrEmpty(txtSurname.ToString()))
+                if (string.IsNullOrEmpty(textName.Text) || String.IsNullOrEmpty(txtSurname.Text))
                     return;
                 var newCustomer = new Customer()
                 {

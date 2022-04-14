@@ -79,6 +79,7 @@
             this.GVItems.ReadOnly = true;
             this.GVItems.RowHeadersWidth = 72;
             this.GVItems.RowTemplate.Height = 37;
+            this.GVItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GVItems.Size = new System.Drawing.Size(717, 383);
             this.GVItems.TabIndex = 0;
             // 

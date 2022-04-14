@@ -47,6 +47,36 @@ namespace Fuel_Station.Win.Client
             ItemEditForm.ShowDialog();
             LoadItemsFromServer();
         }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                return;
+            var itemToDeleteId = (Guid)GVItems.SelectedRows[0].Cells[0].Value;
+            _itemRepo.DeleteAsync(itemToDeleteId);
+            LoadItemsFromServer();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            var itemToEditId = (Guid)GVItems.SelectedRows[0].Cells[0].Value;
+            var itemToEdit = new Item()
+            {
+                ID = itemToEditId,
+                Code = (string)GVItems.SelectedRows[0].Cells[1].Value,
+                Description =(string)GVItems.SelectedRows[0].Cells[2].Value,
+                ItemType = (ItemType)GVItems.SelectedRows[0].Cells[3].Value,
+                Price = (decimal)GVItems.SelectedRows[0].Cells[4].Value,
+                Cost = (decimal)GVItems.SelectedRows[0].Cells[5].Value,
+
+            };
+            var editForm = new ItemEditForm(_itemRepo, State.Edit, itemToEdit);
+            editForm.ShowDialog();
+            LoadItemsFromServer();
+        }
     }
 }
 
