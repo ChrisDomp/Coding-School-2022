@@ -1,4 +1,6 @@
 ﻿using Fuel_Station.Blazor.Shared;
+using Fuel_Station.EF.Repositories;
+using Fuel_Station.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +17,12 @@ namespace Fuel_Station.Win.Client
 {
     public partial class CustomerForm : Form
     {
-
+        private readonly IEntityRepo<Customer> _customerRepo;
         public List<CustomerListViewModel> customerList= new List<CustomerListViewModel>();
-        public CustomerForm()
+        public CustomerForm(IEntityRepo<Customer> customerRepo)
         {
             InitializeComponent();
+            _customerRepo = customerRepo;
         }
 
 
@@ -27,16 +30,55 @@ namespace Fuel_Station.Win.Client
         private void CustomersForm_Load(object sender, EventArgs e)
         {
             LoadItemsFromServer();
-            
         }
 
         private async Task LoadItemsFromServer()
         {
-               var client = new HttpClient();
-               customerList = await client.GetFromJsonAsync<List<CustomerListViewModel>>("https://localhost:7203/customer");
-               grdCustomers.DataSource = customerList;
+            GVCustomers.DataSource = null;
+            var client = new HttpClient();
+            customerList = await client.GetFromJsonAsync<List<CustomerListViewModel>>("https://localhost:7203/customer");
+            GVCustomers.DataSource = customerList;
+            GVCustomers.Refresh();
         }
 
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            var editForm = new CustomerEditForm(_customerRepo,State.New);
+            editForm.ShowDialog();
+            LoadItemsFromServer();
+        }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.No == MessageBox.Show("Do You Want Delete ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                return;
+            var itemToDeleteId = (Guid)GVCustomers.SelectedRows[0].Cells[0].Value;
+            _customerRepo.DeleteAsync(itemToDeleteId);
+            LoadItemsFromServer();
+        }
+
+      
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            var itemToEditId = (Guid)GVCustomers.SelectedRows[0].Cells[0].Value;
+            var itemToEdit = new Customer()
+            {
+                ID = itemToEditId,
+                Name = (string)GVCustomers.SelectedRows[0].Cells[1].Value,
+                Surname = (string)GVCustomers.SelectedRows[0].Cells[2].Value,
+                CardNumber = (string)GVCustomers.SelectedRows[0].Cells[3].Value,
+
+            };
+            var editForm = new CustomerEditForm(_customerRepo,State.Edit, itemToEdit);
+            editForm.ShowDialog();
+            LoadItemsFromServer();
+
+        }
     }
 }

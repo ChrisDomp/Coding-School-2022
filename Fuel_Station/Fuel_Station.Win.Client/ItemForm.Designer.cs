@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.GVItems = new System.Windows.Forms.DataGridView();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
@@ -39,23 +40,22 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.grdItems = new System.Windows.Forms.DataGridView();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GVItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.grdItems);
+            this.layoutControl1.Controls.Add(this.GVItems);
             this.layoutControl1.Controls.Add(this.btnNew);
             this.layoutControl1.Controls.Add(this.btnEdit);
             this.layoutControl1.Controls.Add(this.btnDelete);
@@ -68,6 +68,20 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // GVItems
+            // 
+            this.GVItems.AllowUserToAddRows = false;
+            this.GVItems.AllowUserToDeleteRows = false;
+            this.GVItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GVItems.Location = new System.Drawing.Point(71, 12);
+            this.GVItems.MultiSelect = false;
+            this.GVItems.Name = "GVItems";
+            this.GVItems.ReadOnly = true;
+            this.GVItems.RowHeadersWidth = 72;
+            this.GVItems.RowTemplate.Height = 37;
+            this.GVItems.Size = new System.Drawing.Size(717, 383);
+            this.GVItems.TabIndex = 0;
+            // 
             // btnNew
             // 
             this.btnNew.Location = new System.Drawing.Point(294, 399);
@@ -76,6 +90,7 @@
             this.btnNew.StyleController = this.layoutControl1;
             this.btnNew.TabIndex = 2;
             this.btnNew.Text = "New";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // btnEdit
             // 
@@ -163,22 +178,9 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // grdItems
-            // 
-            this.grdItems.AllowUserToAddRows = false;
-            this.grdItems.AllowUserToDeleteRows = false;
-            this.grdItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdItems.Location = new System.Drawing.Point(71, 12);
-            this.grdItems.Name = "grdItems";
-            this.grdItems.ReadOnly = true;
-            this.grdItems.RowHeadersWidth = 72;
-            this.grdItems.RowTemplate.Height = 37;
-            this.grdItems.Size = new System.Drawing.Size(717, 383);
-            this.grdItems.TabIndex = 0;
-            // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.grdItems;
+            this.layoutControlItem1.Control = this.GVItems;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(780, 387);
@@ -196,13 +198,13 @@
             this.Load += new System.EventHandler(this.ItemForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GVItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             this.ResumeLayout(false);
 
@@ -221,7 +223,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DataGridView grdItems;
+        private DataGridView GVItems;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }
