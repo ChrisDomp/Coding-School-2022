@@ -78,7 +78,6 @@ namespace Fuel_Station.Win.Client
             var editForm = new CustomerEditForm(_customerRepo,State.Edit, itemToEdit);
             editForm.ShowDialog();
             LoadItemsFromServer();
-
-        }
+      }
     }
 }

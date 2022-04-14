@@ -43,8 +43,8 @@ namespace Fuel_Station.Win.Client
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            //var editForm = new ItemEditForm(_itemRepo, State.New);
-            //editForm.ShowDialog();
+            var ItemEditForm = new ItemEditForm(_itemRepo, State.New);
+            ItemEditForm.ShowDialog();
             LoadItemsFromServer();
         }
     }

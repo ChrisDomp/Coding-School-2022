@@ -27,8 +27,8 @@ namespace Fuel_Station.Win.Client
 
         private void editItemsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //Form form = new ItemForm();
-            //form.ShowDialog();
+            Form form = new ItemForm(_itemRepo);
+            form.ShowDialog();
         }
 
         private void editTransactionToolStripMenuItem_Click(object sender, EventArgs e)
