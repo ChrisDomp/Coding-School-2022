@@ -18,8 +18,8 @@ namespace Fuel_Station.Win.Client
     public partial class TransactionForm : Form
     {
         private readonly CustomerListViewModel _customer;
-        private readonly IEntityRepo<Item> _itemRepo;
-        private readonly IEntityRepo<Employee> _employeeRepo;
+        //private readonly IEntityRepo<Item> _itemRepo;
+        //private readonly IEntityRepo<Employee> _employeeRepo;
         private readonly IEntityRepo<Transaction> _transactionRepo;
         private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
         public List<TransactionListViewModel> transactionList = new List<TransactionListViewModel>();
@@ -30,8 +30,8 @@ namespace Fuel_Station.Win.Client
         {
             InitializeComponent();
             _customer = foundCustomer;
-            _itemRepo = itemRepo;
-            _employeeRepo = employeeRepo;
+            //_itemRepo = itemRepo;
+            //_employeeRepo = employeeRepo;
             _transactionRepo = transactionRepo;
             _transactionLineRepo = transactionLineRepo;
         }
@@ -46,9 +46,17 @@ namespace Fuel_Station.Win.Client
             var client = new HttpClient();
             transactionList = await client.GetFromJsonAsync<List<TransactionListViewModel>>("https://localhost:7203/transaction");
             customerTransactions = transactionList.FindAll(transaction => transaction.CustomerID == _customer.Id).ToList();
-
+  
             GVTransactions.DataSource = customerTransactions;
             GVTransactions.Refresh();
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            var transactionEditForm = new TransactionEditForm(_customer,_transactionRepo,_transactionLineRepo,State.New);
+            transactionEditForm.ShowDialog();
+            LoadItemsFromServerAsync();
+
         }
     }
 }
