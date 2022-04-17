@@ -15,12 +15,11 @@ namespace Fuel_Station.Blazor.Shared
         public Guid CustomerID { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public decimal TotalValue { get; set; }
-        public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
-        public List<TransactionLine> TransactionLines { get; set; }
+
         public TransactionListViewModel()
         {
-
+            Date = DateTime.Now;
+            Id = Guid.NewGuid();
         }
     }
     public class TransactionEditViewModel
@@ -31,12 +30,12 @@ namespace Fuel_Station.Blazor.Shared
         public Guid CustomerID { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public decimal TotalValue { get; set; }
-        public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
-        public List<TransactionLine> TransactionLines { get; set; }
+
+
         public TransactionEditViewModel()
         {
-
+            Date = DateTime.Now;
+            Id = Guid.NewGuid();
         }
     }
 }

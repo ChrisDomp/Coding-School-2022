@@ -24,6 +24,7 @@ namespace Fuel_Station.Win.Client
         private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
         public List<TransactionListViewModel> transactionList = new List<TransactionListViewModel>();
         public List<TransactionListViewModel> customerTransactions = new List<TransactionListViewModel>();
+        public List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
 
 
         public TransactionForm(CustomerListViewModel foundCustomer, IEntityRepo<Item> itemRepo, IEntityRepo<Employee> employeeRepo, IEntityRepo<Transaction> transactionRepo, IEntityRepo<TransactionLine> transactionLineRepo)
@@ -46,14 +47,16 @@ namespace Fuel_Station.Win.Client
             var client = new HttpClient();
             transactionList = await client.GetFromJsonAsync<List<TransactionListViewModel>>("https://localhost:7203/transaction");
             customerTransactions = transactionList.FindAll(transaction => transaction.CustomerID == _customer.Id).ToList();
-  
+            client = new HttpClient();
+            employeeList = await client.GetFromJsonAsync<List<EmployeeListViewModel>>("https://localhost:7203/Employee");
+
             GVTransactions.DataSource = customerTransactions;
             GVTransactions.Refresh();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            var transactionEditForm = new TransactionEditForm(_customer,_transactionRepo,_transactionLineRepo,State.New);
+            var transactionEditForm = new TransactionEditForm(_customer,employeeList,_transactionLineRepo,State.New,null);
             transactionEditForm.ShowDialog();
             LoadItemsFromServerAsync();
 
