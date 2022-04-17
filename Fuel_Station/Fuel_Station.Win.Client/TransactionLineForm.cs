@@ -39,5 +39,54 @@ namespace Fuel_Station.Win.Client
 
         }
 
+        private void comboItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtPrice.EditValue = ((decimal)(spinEdit1.EditValue)) * itemList[comboItem.SelectedIndex].Price;
+
+        }
+
+        private void spinEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            GetNetValue();
+            GetDiscount();
+            GetDiscountValue();
+            txtPrice.EditValue = GetNetValue();
+            txtDiscountPercentage.EditValue = 100 * GetDiscount() ;
+            txtDiscountValue.EditValue = GetDiscountValue();
+            txtTotalValue.EditValue = GetTotalValue();
+
+        }
+
+        private decimal GetTotalValue()
+        {   
+            decimal totalValue = 0;
+            totalValue = GetDiscountValue() - GetDiscount();
+            return totalValue;
+        }
+
+        private decimal GetDiscountValue()
+        {
+            decimal discountValue = 0;
+            discountValue = GetNetValue() * GetDiscount(); 
+
+            return discountValue;
+        }
+
+        private decimal GetNetValue()
+        {
+            var netValue = ((decimal)(spinEdit1.EditValue)) * itemList[comboItem.SelectedIndex].Price;
+            return netValue;
+        }
+
+        private decimal GetDiscount()
+        {
+            decimal discount = 0;
+            if (itemList[comboItem.SelectedIndex].ItemType == Model.ItemType.Fuel&& GetNetValue()>20)
+            {
+                discount = (decimal) 0.1 ;
+            }
+            return discount;
+
+        }
     }
 }

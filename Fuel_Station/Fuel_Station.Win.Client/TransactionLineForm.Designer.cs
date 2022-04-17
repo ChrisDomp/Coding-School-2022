@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.comboItem = new System.Windows.Forms.ComboBox();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.spinEdit1 = new DevExpress.XtraEditors.SpinEdit();
@@ -52,7 +53,6 @@
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.comboItem = new System.Windows.Forms.ComboBox();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -99,6 +99,15 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // comboItem
+            // 
+            this.comboItem.FormattingEnabled = true;
+            this.comboItem.Location = new System.Drawing.Point(97, 12);
+            this.comboItem.Name = "comboItem";
+            this.comboItem.Size = new System.Drawing.Size(134, 23);
+            this.comboItem.TabIndex = 0;
+            this.comboItem.SelectedIndexChanged += new System.EventHandler(this.comboItem_SelectedIndexChanged);
+            // 
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(237, 191);
@@ -133,6 +142,7 @@
             this.spinEdit1.Size = new System.Drawing.Size(51, 20);
             this.spinEdit1.StyleController = this.layoutControl1;
             this.spinEdit1.TabIndex = 2;
+            this.spinEdit1.EditValueChanged += new System.EventHandler(this.spinEdit1_EditValueChanged);
             // 
             // txtPrice
             // 
@@ -321,14 +331,6 @@
             this.emptySpaceItem8.Name = "emptySpaceItem8";
             this.emptySpaceItem8.Size = new System.Drawing.Size(307, 24);
             this.emptySpaceItem8.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // comboItem
-            // 
-            this.comboItem.FormattingEnabled = true;
-            this.comboItem.Location = new System.Drawing.Point(97, 12);
-            this.comboItem.Name = "comboItem";
-            this.comboItem.Size = new System.Drawing.Size(134, 23);
-            this.comboItem.TabIndex = 0;
             // 
             // layoutControlItem1
             // 
