@@ -20,9 +20,12 @@ namespace Fuel_Station.Win.Client
         private readonly IEntityRepo<Customer> _customerRepo;
         private readonly IEntityRepo<Item> _itemRepo;
         private readonly IEntityRepo<Employee> _employeeRepo;
+        private readonly IEntityRepo<Transaction> _transactionRepo;
+        private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
         public List<CustomerListViewModel> customerList = new List<CustomerListViewModel>();
         private CustomerListViewModel? foundCustomer;
         private int foundCustomerIndex;
+
 
         public FindCustomerForm(IEntityRepo<Customer> customerRepo,IEntityRepo<Item> itemRepo,IEntityRepo<Employee> employeeRepo)
         {
@@ -43,11 +46,12 @@ namespace Fuel_Station.Win.Client
             {
                 var form1 = new CustomerEditForm(_customerRepo, State.New);
                 form1.ShowDialog();
-                //return;
             }
-
-            var form2 = new TransactionForm(foundCustomer,_itemRepo,_employeeRepo);
-
+            else
+            {
+                var form2 = new TransactionForm(foundCustomer, _itemRepo, _employeeRepo, _transactionRepo, _transactionLineRepo);
+                form2.ShowDialog();
+            }
 
         }
 

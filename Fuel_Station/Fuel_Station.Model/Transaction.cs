@@ -10,7 +10,7 @@ namespace Fuel_Station.Model
     {
         public DateTime Date { get; set; }
         public Guid EmployeeID{ get; set; }
-        public Guid CostumerID{ get; set; }
+        public Guid CustomerID{ get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public decimal  TotalValue { get; set; }
         public Customer Customer { get; set; }

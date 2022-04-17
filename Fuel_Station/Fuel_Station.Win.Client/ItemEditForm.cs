@@ -29,10 +29,14 @@ namespace Fuel_Station.Win.Client
 
         private void PopulateControls()
         {
-            txtDescription.Text = _itemToEdit.Description;
-            spinEditCost.Value = _itemToEdit.Cost;
-            spinEditPrice.Value = _itemToEdit.Price;
-            comboType.Text = _itemToEdit.ItemType.ToString();
+
+            if (_state == State.Edit)
+            {
+                txtDescription.Text = _itemToEdit.Description;
+                spinEditCost.Value = _itemToEdit.Cost;
+                spinEditPrice.Value = _itemToEdit.Price;
+                comboType.Text = _itemToEdit.ItemType.ToString();
+            }
             comboType.DataSource = Enum.GetValues(typeof(ItemType));
         }
 
@@ -41,6 +45,7 @@ namespace Fuel_Station.Win.Client
             InitializeComponent();
             _itemRepo = itemRepo;
             _state = state;
+            PopulateControls();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

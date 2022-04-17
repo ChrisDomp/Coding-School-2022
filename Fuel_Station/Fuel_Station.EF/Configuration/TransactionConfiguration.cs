@@ -20,7 +20,7 @@ namespace Fuel_Station.EF.Configuration
             builder.HasKey(transaction => transaction.ID);
             builder.Property(transaction => transaction.ID);
 
-            builder.Property(transaction => transaction.CostumerID);
+            builder.Property(transaction => transaction.CustomerID);
             builder.Property(transaction => transaction.EmployeeID);
             builder.Property(transaction => transaction.TotalValue);
             builder.Property(transaction => transaction.PaymentMethod);

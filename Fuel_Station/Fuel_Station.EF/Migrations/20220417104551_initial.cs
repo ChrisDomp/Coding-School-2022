@@ -14,7 +14,7 @@ namespace Fuel_Station.EF.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CardNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CardNumber = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
@@ -28,7 +28,7 @@ namespace Fuel_Station.EF.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    HireDateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HireDateStart = table.Column<DateTime>(type: "datetime2", nullable: true),
                     HireDateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
                     SalaryPerMonth = table.Column<decimal>(type: "decimal(18,2)", maxLength: 20, nullable: false),
                     EmployeeType = table.Column<int>(type: "int", nullable: false),
@@ -45,7 +45,7 @@ namespace Fuel_Station.EF.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     ItemType = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -63,10 +63,9 @@ namespace Fuel_Station.EF.Migrations
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EmployeeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CostumerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CustomerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
-                    TotalValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CustomerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    TotalValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,8 +77,8 @@ namespace Fuel_Station.EF.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transactions_Employees_ID",
-                        column: x => x.ID,
+                        name: "FK_Transactions_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
                         principalTable: "Employees",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -130,6 +129,11 @@ namespace Fuel_Station.EF.Migrations
                 name: "IX_Transactions_CustomerID",
                 table: "Transactions",
                 column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_EmployeeID",
+                table: "Transactions",
+                column: "EmployeeID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

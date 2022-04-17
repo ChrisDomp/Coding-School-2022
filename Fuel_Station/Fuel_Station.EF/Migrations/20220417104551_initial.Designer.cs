@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fuel_Station.EF.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220411194259_initial")]
+    [Migration("20220417104551_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,8 +32,8 @@ namespace Fuel_Station.EF.Migrations
 
                     b.Property<string>("CardNumber")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -62,7 +62,7 @@ namespace Fuel_Station.EF.Migrations
                     b.Property<DateTime?>("HireDateEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("HireDateStart")
+                    b.Property<DateTime?>("HireDateStart")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
@@ -92,8 +92,8 @@ namespace Fuel_Station.EF.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Cost")
                         .HasColumnType("decimal(18,2)");
@@ -117,9 +117,7 @@ namespace Fuel_Station.EF.Migrations
             modelBuilder.Entity("Fuel_Station.Model.Transaction", b =>
                 {
                     b.Property<Guid>("ID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CostumerID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CustomerID")
@@ -140,6 +138,8 @@ namespace Fuel_Station.EF.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID");
+
+                    b.HasIndex("EmployeeID");
 
                     b.ToTable("Transactions", (string)null);
                 });
@@ -192,8 +192,8 @@ namespace Fuel_Station.EF.Migrations
                         .IsRequired();
 
                     b.HasOne("Fuel_Station.Model.Employee", "Employee")
-                        .WithOne("Transaction")
-                        .HasForeignKey("Fuel_Station.Model.Transaction", "ID")
+                        .WithMany()
+                        .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -219,12 +219,6 @@ namespace Fuel_Station.EF.Migrations
                     b.Navigation("Item");
 
                     b.Navigation("Transaction");
-                });
-
-            modelBuilder.Entity("Fuel_Station.Model.Employee", b =>
-                {
-                    b.Navigation("Transaction")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Fuel_Station.Model.Transaction", b =>
