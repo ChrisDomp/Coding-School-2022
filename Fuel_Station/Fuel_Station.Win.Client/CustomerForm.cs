@@ -39,6 +39,7 @@ namespace Fuel_Station.Win.Client
             customerList = await client.GetFromJsonAsync<List<CustomerListViewModel>>("https://localhost:7203/customer");
             GVCustomers.DataSource = customerList;
             GVCustomers.Refresh();
+            GVCustomers.Update();
         }
 
         private void btnNew_Click(object sender, EventArgs e)

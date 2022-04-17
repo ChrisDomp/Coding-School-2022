@@ -23,16 +23,36 @@ namespace Fuel_Station.Win.Client
             InitializeComponent();
             _itemRepo = itemRepo;
             _state = state; 
-            _itemToEdit = itemToEdit;  
+            _itemToEdit = itemToEdit;
+            PopulateControls();
+       }
+
+        private void PopulateControls()
+        {
+            txtDescription.Text = _itemToEdit.Description;
+            spinEditCost.Value = _itemToEdit.Cost;
+            spinEditPrice.Value = _itemToEdit.Price;
+            comboType.Text = _itemToEdit.ItemType.ToString();
+            comboType.DataSource = Enum.GetValues(typeof(ItemType));
         }
+
         public ItemEditForm(IEntityRepo<Item> itemRepo, State state)
         {
             InitializeComponent();
             _itemRepo = itemRepo;
             _state = state;
         }
-        private void btnOK_Click(object sender, EventArgs e)
+
+        private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnOK_Click_1(object sender, EventArgs e)
+        {
+            if (spinEditCost.Value < 0 ||
+            spinEditPrice.Value < 0) return;
+
             if (_state == State.New)
             {
                 if (string.IsNullOrEmpty(txtDescription.Text))
@@ -56,10 +76,6 @@ namespace Fuel_Station.Win.Client
             }
             this.Close();
 
-        }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

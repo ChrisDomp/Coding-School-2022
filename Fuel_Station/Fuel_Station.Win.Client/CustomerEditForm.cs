@@ -29,6 +29,9 @@ namespace Fuel_Station.Win.Client
             _customerRepo = customerRepo;
             _state = state;
             _itemToEdit = entity;
+            textName.Text = entity.Name;
+            txtSurname.Text = entity.Surname;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -55,6 +58,9 @@ namespace Fuel_Station.Win.Client
 
         }
 
-
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

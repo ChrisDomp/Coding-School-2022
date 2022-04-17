@@ -33,7 +33,7 @@ namespace Fuel_Station.Win.Client
 
         private void editTransactionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new TransactionForm();
+            Form form = new FindCustomerForm(_customerRepo);
             form.ShowDialog();
         }
     }
