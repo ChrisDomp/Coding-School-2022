@@ -45,6 +45,7 @@ namespace Fuel_Station.Win.Client
             var editForm = new CustomerEditForm(_customerRepo,State.New);
             editForm.ShowDialog();
             LoadItemsFromServer();
+            PopulateGrid();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace Fuel_Station.Win.Client
             var itemToDeleteId = (Guid)GVCustomers.SelectedRows[0].Cells[0].Value;
             _customerRepo.DeleteAsync(itemToDeleteId);
             LoadItemsFromServer();
+            PopulateGrid();
         }
 
       

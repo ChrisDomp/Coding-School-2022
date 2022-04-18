@@ -27,11 +27,12 @@ namespace Fuel_Station.Win.Client
         public List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
         public Transaction transaction;
 
-        public TransactionEditForm(Transaction transaction, List<EmployeeListViewModel> employeeList,IEntityRepo<TransactionLine> transactionLineRepo,State state,Transaction itemToEdit)
+        public TransactionEditForm(Transaction transaction, IEntityRepo<Transaction> transactionRepo, List<EmployeeListViewModel> employeeList, IEntityRepo<TransactionLine> transactionLineRepo, State state, Transaction itemToEdit)
         {
             InitializeComponent();
 
             this.transaction = transaction;
+            _transactionRepo = transactionRepo;
             _transactionLineRepo = transactionLineRepo;
             _state = state;
             _itemToEdit = itemToEdit;
@@ -47,54 +48,88 @@ namespace Fuel_Station.Win.Client
 
         private void PopulateControls()
         {
-            
-            if (_state == State.Edit)
-            {
-                //txtDescription.Text = _itemToEdit.Description;
-                //spinEditCost.Value = _itemToEdit.Cost;
-                //spinEditPrice.Value = _itemToEdit.Price;
-                //comboType.Text = _itemToEdit.ItemType.ToString();
-            }
+
+            //if (_state == State.Edit)
+            //{
+              
+            //}
             comboPayMethod.DataSource = Enum.GetValues(typeof(PaymentMethod));
             comboEmployee.DataSource = employeeList;
             comboEmployee.DisplayMember = "Surname";
             comboEmployee.ValueMember = "Id";
 
-
-
+           
         }
 
-        private async Task LoadDataFromServerAsync() 
+
+        private void CalcTotalValue()
+        {
+            transaction.TotalValue = 0;
+            for (var i = 0; i < GVTransactionLines.Rows.Count; i++)            
+                transaction.TotalValue += (decimal)GVTransactionLines.Rows[i].Cells[8].Value;
+        }
+
+        private async Task LoadDataFromServerAsync()
         {
             var client = new HttpClient();
             transactionLineList = await client.GetFromJsonAsync<List<TransactionLineListViewModel>>("https://localhost:7203/TransactionLines");
-
+   
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-  //for the next form to avoid misspopulation
-
-            
-            var form = new TransactionLineForm(transaction,_transactionLineRepo,State.New);
+            var form = new TransactionLineForm(transaction, _transactionLineRepo, State.New);
             form.ShowDialog();
             LoadDataFromServerAsync();
-            
+            //CalcTotalValue();
+           
         }
-
-        
 
         private void PopulateGrid()
         {
             GVTransactionLines.DataSource = null;
-            GVTransactionLines.DataSource = transactionLineList;
+            GVTransactionLines.DataSource = transactionLineList.Where(tr => tr.TransactionID == transaction.ID).ToList();
+            GVTransactionLines.Columns[0].Visible = false;
+            GVTransactionLines.Columns[1].Visible = false;
+            //GVTransactionLines.Columns[2].Visible = false;
+
             GVTransactionLines.Refresh();
             GVTransactionLines.Update();
+            CalcTotalValue(); 
+            txtTotalValue.EditValue = transaction.TotalValue.ToString();
+
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             PopulateGrid();
+            //PopulateControls();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            transaction.EmployeeID = (Guid)comboEmployee.SelectedValue;
+            transaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod),comboPayMethod.SelectedValue.ToString());
+          
+            
+            _transactionRepo.UpdateAsync(transaction.ID, transaction);
+            this.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                return;
+            var itemToDeleteId = (Guid)GVTransactionLines.SelectedRows[0].Cells[0].Value;
+            _transactionLineRepo.DeleteAsync(itemToDeleteId);
+            LoadDataFromServerAsync();
+            PopulateGrid();
+        }
+       
     }
 }

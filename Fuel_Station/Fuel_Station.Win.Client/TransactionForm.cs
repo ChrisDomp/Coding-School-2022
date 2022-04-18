@@ -25,9 +25,9 @@ namespace Fuel_Station.Win.Client
         public List<TransactionListViewModel> transactionList = new List<TransactionListViewModel>();
         public List<TransactionListViewModel> customerTransactions = new List<TransactionListViewModel>();
         public List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
-            public TransactionListViewModel dummyTransaction = new TransactionListViewModel();
+       // public TransactionListViewModel dummyTransaction = new TransactionListViewModel();
         private EmployeeListViewModel dummyEmployee;
-        private Transaction newTransaction;
+        private Transaction newTransaction = new Transaction();
 
         public TransactionForm(CustomerListViewModel foundCustomer,IEntityRepo<Transaction> transactionRepo, IEntityRepo<TransactionLine> transactionLineRepo)
         {
@@ -51,23 +51,36 @@ namespace Fuel_Station.Win.Client
             customerTransactions = transactionList.FindAll(transaction => transaction.CustomerID == _customer.Id).ToList();
             client = new HttpClient();
             employeeList = await client.GetFromJsonAsync<List<EmployeeListViewModel>>("https://localhost:7203/Employee");
-
-            GVTransactions.DataSource = customerTransactions;
-            GVTransactions.Refresh();
+            PopulateGrid();
+            
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            var dummyTransaction = new TransactionListViewModel();
             StoreDummyTransaction(dummyTransaction);
-            var transactionEditForm = new TransactionEditForm(newTransaction,employeeList,_transactionLineRepo,State.New,null);
+            var transactionEditForm = new TransactionEditForm(newTransaction,_transactionRepo,employeeList,_transactionLineRepo,State.New,null);
             transactionEditForm.ShowDialog();
             LoadItemsFromServerAsync();
+            PopulateGrid();
 
         }
+
+
+
+        private void PopulateGrid()
+        {
+            GVTransactions.DataSource = customerTransactions;
+            GVTransactions.Refresh();
+            GVTransactions.Update();
+            GVTransactions.Columns[0].Visible = false;
+            GVTransactions.Columns[2].Visible = false;
+            GVTransactions.Columns[3].Visible = false;
+
+        }
+
         private void StoreDummyTransaction(TransactionListViewModel transactionView)
         {
-            
-            
             newTransaction = new Transaction()
             {
                 ID = transactionView.Id,
@@ -76,7 +89,6 @@ namespace Fuel_Station.Win.Client
                 CustomerID = _customer.Id,
                 PaymentMethod = transactionView.PaymentMethod,
                 TotalValue = transactionView.TotalValue,
-
 
             };
             
@@ -89,6 +101,27 @@ namespace Fuel_Station.Win.Client
             var employeeList = new List<EmployeeListViewModel>();
             employeeList = await client.GetFromJsonAsync<List<EmployeeListViewModel>>("https://localhost:7203/Employee");
             dummyEmployee = employeeList[0];
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                return;
+            var itemToDeleteId = (Guid)GVTransactions.SelectedRows[0].Cells[0].Value;
+            _transactionRepo.DeleteAsync(itemToDeleteId);
+            LoadItemsFromServerAsync();
+            PopulateGrid();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PopulateGrid();
         }
     }
 }
