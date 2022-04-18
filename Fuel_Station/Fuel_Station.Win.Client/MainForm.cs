@@ -12,6 +12,11 @@ namespace Fuel_Station.Win.Client
         private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
         private readonly IEntityRepo<Transaction> _transactionRepo;
 
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
         public MainForm(IEntityRepo<Customer> customerRepo, IEntityRepo<Item> itemRepo, IEntityRepo<TransactionLine> transactionLineRepo, IEntityRepo<Transaction> transactionRepo)
         {
             InitializeComponent();

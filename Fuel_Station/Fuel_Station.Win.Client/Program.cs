@@ -22,18 +22,26 @@ namespace Fuel_Station.Win.Client
             ConfigureServices(services);
 
             using var serviceProvider = services.BuildServiceProvider();
-            var mainForm = serviceProvider.GetRequiredService<MainForm>();
-            Application.Run(mainForm);
+            //var mainForm = serviceProvider.GetRequiredService<MainForm>();
+            //Application.Run(mainForm);
+            var authenticationForm = serviceProvider.GetRequiredService<AuthenicationForm>();
+            Application.Run(authenticationForm);
         }
         private static void ConfigureServices(IServiceCollection services)
         {
             //Actual Service
             services.AddDbContext<Fuel_Station.EF.Context.ApplicationContext>();
+            //services.AddSingleton<IEntityRepo<Customer>, CustomerRepo>()
+            //     .AddSingleton<IEntityRepo<Item>, ItemRepo>()
+            //     .AddSingleton<IEntityRepo<Transaction>,TransactionRepo>()
+            //     .AddSingleton<IEntityRepo<TransactionLine>, TransactionLineRepo>()
+            //    .AddSingleton<MainForm>();
             services.AddSingleton<IEntityRepo<Customer>, CustomerRepo>()
                  .AddSingleton<IEntityRepo<Item>, ItemRepo>()
-                 .AddSingleton<IEntityRepo<Transaction>,TransactionRepo>()
+                 .AddSingleton<IEntityRepo<Transaction>, TransactionRepo>()
                  .AddSingleton<IEntityRepo<TransactionLine>, TransactionLineRepo>()
-                .AddSingleton<MainForm>();
+                .AddSingleton<AuthenicationForm>();
+
 
 
         }

@@ -65,10 +65,10 @@ namespace Fuel_Station.Win.Client
         private void CalcTotalValue()
         {
             transaction.TotalValue = 0;
-            for (var i = 0; i < GVTransactionLines.Rows.Count; i++)            
+            for (var i = 0; i < GVTransactionLines.Rows.Count; i++)
                 transaction.TotalValue += (decimal)GVTransactionLines.Rows[i].Cells[8].Value;
+           
         }
-
         private async Task LoadDataFromServerAsync()
         {
             var client = new HttpClient();
@@ -115,10 +115,20 @@ namespace Fuel_Station.Win.Client
         {
             transaction.EmployeeID = (Guid)comboEmployee.SelectedValue;
             transaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod),comboPayMethod.SelectedValue.ToString());
-          
-            
+
+            CheckTotalValue();
             _transactionRepo.UpdateAsync(transaction.ID, transaction);
+           
             this.Close();
+        }
+
+        private void CheckTotalValue()
+        {
+            if (transaction.TotalValue > 50)
+            {
+                MessageBox.Show("The only acceptable Payment Method is cash");
+                transaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), PaymentMethod.Cash.ToString());
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
