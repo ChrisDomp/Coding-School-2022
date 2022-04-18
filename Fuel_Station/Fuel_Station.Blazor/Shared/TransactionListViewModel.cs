@@ -18,8 +18,13 @@ namespace Fuel_Station.Blazor.Shared
 
         public TransactionListViewModel()
         {
-            Date = DateTime.Now;
             Id = Guid.NewGuid();
+            Date = DateTime.Now;
+            //dummy data in order to make the first store to the db
+            EmployeeID = Guid.NewGuid();
+            CustomerID = Guid.NewGuid();
+            PaymentMethod = (int)PaymentMethod.CreditCard;
+            TotalValue = 0;
         }
     }
     public class TransactionEditViewModel

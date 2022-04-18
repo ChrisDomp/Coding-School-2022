@@ -8,7 +8,7 @@ namespace Fuel_Station.Blazor.Shared
 {
     public class TransactionLineListViewModel
     {
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
         public Guid TransactionID { get; set; }
         public Guid ItemID { get; set; }
         public int Quantity { get; set; }
@@ -25,7 +25,7 @@ namespace Fuel_Station.Blazor.Shared
     }
     public class TransactionLineEditViewModel
     {
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
         public Guid TransactionID { get; set; }
         public Guid ItemID { get; set; }
         public int Quantity { get; set; }

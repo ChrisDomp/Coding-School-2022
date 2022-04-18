@@ -9,12 +9,16 @@ namespace Fuel_Station.Win.Client
         private readonly IEntityRepo<Customer> _customerRepo;
         private readonly IEntityRepo<Item> _itemRepo;
         private readonly IEntityRepo<Employee> _employeeRepo;
+        private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
+        private readonly IEntityRepo<Transaction> _transactionRepo;
 
-        public MainForm(IEntityRepo<Customer> customerRepo, IEntityRepo<Item> itemRepo)
+        public MainForm(IEntityRepo<Customer> customerRepo, IEntityRepo<Item> itemRepo, IEntityRepo<TransactionLine> transactionLineRepo, IEntityRepo<Transaction> transactionRepo)
         {
             InitializeComponent();
             _customerRepo = customerRepo;
             _itemRepo = itemRepo;
+            _transactionLineRepo = transactionLineRepo;
+            _transactionRepo = transactionRepo;
         }
 
 
@@ -34,7 +38,7 @@ namespace Fuel_Station.Win.Client
 
         private void editTransactionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new FindCustomerForm(_customerRepo,_itemRepo,_employeeRepo);
+            Form form = new FindCustomerForm(_customerRepo,_itemRepo,_employeeRepo,_transactionRepo,_transactionLineRepo);
             form.ShowDialog();
         }
     }

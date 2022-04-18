@@ -25,14 +25,15 @@ namespace Fuel_Station.Win.Client
         public List<TransactionListViewModel> transactionList = new List<TransactionListViewModel>();
         public List<TransactionListViewModel> customerTransactions = new List<TransactionListViewModel>();
         public List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
+            public TransactionListViewModel dummyTransaction = new TransactionListViewModel();
+        private EmployeeListViewModel dummyEmployee;
+        private Transaction newTransaction;
 
-
-        public TransactionForm(CustomerListViewModel foundCustomer, IEntityRepo<Item> itemRepo, IEntityRepo<Employee> employeeRepo, IEntityRepo<Transaction> transactionRepo, IEntityRepo<TransactionLine> transactionLineRepo)
+        public TransactionForm(CustomerListViewModel foundCustomer,IEntityRepo<Transaction> transactionRepo, IEntityRepo<TransactionLine> transactionLineRepo)
         {
             InitializeComponent();
             _customer = foundCustomer;
-            //_itemRepo = itemRepo;
-            //_employeeRepo = employeeRepo;
+ 
             _transactionRepo = transactionRepo;
             _transactionLineRepo = transactionLineRepo;
         }
@@ -40,6 +41,7 @@ namespace Fuel_Station.Win.Client
         private void TransactionForm_Load(object sender, EventArgs e)
         {
             LoadItemsFromServerAsync();
+            GetDummyEmployeeAsync();
 
         }
         private async Task LoadItemsFromServerAsync()
@@ -56,10 +58,37 @@ namespace Fuel_Station.Win.Client
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            var transactionEditForm = new TransactionEditForm(_customer,employeeList,_transactionLineRepo,State.New,null);
+            StoreDummyTransaction(dummyTransaction);
+            var transactionEditForm = new TransactionEditForm(newTransaction,employeeList,_transactionLineRepo,State.New,null);
             transactionEditForm.ShowDialog();
             LoadItemsFromServerAsync();
 
+        }
+        private void StoreDummyTransaction(TransactionListViewModel transactionView)
+        {
+            
+            
+            newTransaction = new Transaction()
+            {
+                ID = transactionView.Id,
+                Date = transactionView.Date,
+                EmployeeID = dummyEmployee.Id,
+                CustomerID = _customer.Id,
+                PaymentMethod = transactionView.PaymentMethod,
+                TotalValue = transactionView.TotalValue,
+
+
+            };
+            
+            _transactionRepo.CreateAsync(newTransaction);
+        }
+
+        private async Task GetDummyEmployeeAsync()
+        {
+            var client = new HttpClient();
+            var employeeList = new List<EmployeeListViewModel>();
+            employeeList = await client.GetFromJsonAsync<List<EmployeeListViewModel>>("https://localhost:7203/Employee");
+            dummyEmployee = employeeList[0];
         }
     }
 }

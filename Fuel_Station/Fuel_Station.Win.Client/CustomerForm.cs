@@ -37,9 +37,7 @@ namespace Fuel_Station.Win.Client
             GVCustomers.DataSource = null;
             var client = new HttpClient();
             customerList = await client.GetFromJsonAsync<List<CustomerListViewModel>>("https://localhost:7203/customer");
-            GVCustomers.DataSource = customerList;
-            GVCustomers.Refresh();
-            GVCustomers.Update();
+           
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -79,6 +77,20 @@ namespace Fuel_Station.Win.Client
             var editForm = new CustomerEditForm(_customerRepo,State.Edit, itemToEdit);
             editForm.ShowDialog();
             LoadItemsFromServer();
+            PopulateGrid();
       }
+
+        private void PopulateGrid()
+        {
+            GVCustomers.DataSource = null;
+            GVCustomers.DataSource = customerList;
+            GVCustomers.Refresh();
+            GVCustomers.Update();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PopulateGrid();
+        }
     }
 }

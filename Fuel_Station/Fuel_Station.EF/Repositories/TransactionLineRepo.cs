@@ -1,4 +1,5 @@
-﻿using Fuel_Station.EF.Context;
+﻿using Fuel_Station.Blazor.Shared;
+using Fuel_Station.EF.Context;
 using Fuel_Station.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,6 +26,7 @@ namespace Fuel_Station.EF.Repositories
             _context.TransactionLines.Add(entity);
             await _context.SaveChangesAsync();
         }
+
         public async Task DeleteAsync(Guid id)
         {
             var foundTransactionLine = _context.TransactionLines.SingleOrDefault(trLines => trLines.ID == id);

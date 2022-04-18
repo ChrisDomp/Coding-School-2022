@@ -1,10 +1,14 @@
 ﻿using Fuel_Station.Blazor.Shared;
+using Fuel_Station.EF.Repositories;
+using Fuel_Station.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,13 +19,28 @@ namespace Fuel_Station.Win.Client
     {
         public List<ItemListViewModel> itemList = new List<ItemListViewModel>();
         private readonly State _state;
-        public TransactionLineForm(List<ItemListViewModel> itemList,State state)
+        private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
+        public Transaction transaction;
+
+
+
+        public TransactionLineForm(Transaction transaction,IEntityRepo<TransactionLine> transactionLineRepo,State state)
         {
             InitializeComponent();
-            this.itemList = itemList;
             _state = state;
+            _transactionLineRepo = transactionLineRepo;
+            this.transaction = transaction;
+            LoadItemsFromServerAsync();
             PopulateControls();
         }
+
+        private async Task LoadItemsFromServerAsync()
+        {
+            var client = new HttpClient();
+            itemList = await client.GetFromJsonAsync<List<ItemListViewModel>>("https://localhost:7203/Item");
+
+        }
+
         private void PopulateControls()
         {
 
@@ -60,7 +79,7 @@ namespace Fuel_Station.Win.Client
         private decimal GetTotalValue()
         {   
             decimal totalValue = 0;
-            totalValue = GetDiscountValue() - GetDiscount();
+            totalValue = GetNetValue() - GetDiscountValue();
             return totalValue;
         }
 
@@ -74,19 +93,47 @@ namespace Fuel_Station.Win.Client
 
         private decimal GetNetValue()
         {
-            var netValue = ((decimal)(spinEdit1.EditValue)) * itemList[comboItem.SelectedIndex].Price;
+            var Quantity = (decimal)spinEdit1.EditValue;
+            var netValue = Quantity * (decimal)itemList[comboItem.SelectedIndex].Price;
             return netValue;
         }
 
         private decimal GetDiscount()
         {
             decimal discount = 0;
-            if (itemList[comboItem.SelectedIndex].ItemType == Model.ItemType.Fuel&& GetNetValue()>20)
+            if (itemList[comboItem.SelectedIndex].ItemType == Model.ItemType.Fuel&& GetNetValue() > 20)
             {
-                discount = (decimal) 0.1 ;
+                discount = (decimal)0.1 ;
             }
             return discount;
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            var newTransactionLine = new TransactionLine()
+            {
+                TransactionID = transaction.ID,
+                ItemID = itemList[comboItem.SelectedIndex].Id,
+                Quantity = Convert.ToInt32(spinEdit1.EditValue),
+                ItemPrice = itemList[comboItem.SelectedIndex].Price,
+                NetValue = GetNetValue(),
+                DiscountPercent = GetDiscount(),
+                DiscountValue = GetDiscountValue(),
+                TotalValue = GetTotalValue(),
+
+            };
+            _transactionLineRepo.CreateAsync(newTransactionLine);
+            this.Close();
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PopulateControls();
         }
     }
 }

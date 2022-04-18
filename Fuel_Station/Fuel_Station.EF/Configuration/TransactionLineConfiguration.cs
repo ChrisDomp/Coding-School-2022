@@ -25,9 +25,9 @@ namespace Fuel_Station.EF.Configuration
             builder.Property(transactionLine => transactionLine.Quantity);
 
 
-            builder.HasOne(transactionLine => transactionLine.Transaction)
-                   .WithMany(transaction => transaction.TransactionLines)
-                   .HasForeignKey(transactionLine => transactionLine.TransactionID);
+            //builder.HasOne(transactionLine => transactionLine.Transaction)
+            //       .WithMany(transaction => transaction.TransactionLines)
+            //       .HasForeignKey(transactionLine => transactionLine.TransactionID);
 
 
         }

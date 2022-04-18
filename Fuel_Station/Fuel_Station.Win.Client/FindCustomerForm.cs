@@ -27,12 +27,15 @@ namespace Fuel_Station.Win.Client
         private int foundCustomerIndex;
 
 
-        public FindCustomerForm(IEntityRepo<Customer> customerRepo,IEntityRepo<Item> itemRepo,IEntityRepo<Employee> employeeRepo)
+        public FindCustomerForm(IEntityRepo<Customer> customerRepo,IEntityRepo<Item> itemRepo,IEntityRepo<Employee> employeeRepo, IEntityRepo<Transaction> transactionRepo, IEntityRepo<TransactionLine> transactionLineRepo)
         {
             InitializeComponent();
             _customerRepo = customerRepo;
             _itemRepo = itemRepo;
             _employeeRepo = employeeRepo;
+            _transactionRepo = transactionRepo;
+            _transactionLineRepo = transactionLineRepo;
+
         }   
     private void btnOK_Click(object sender, EventArgs e)
         {
@@ -49,7 +52,7 @@ namespace Fuel_Station.Win.Client
             }
             else
             {
-                var form2 = new TransactionForm(foundCustomer, _itemRepo, _employeeRepo, _transactionRepo, _transactionLineRepo);
+                var form2 = new TransactionForm(foundCustomer, _transactionRepo, _transactionLineRepo);
                 form2.ShowDialog();
             }
 

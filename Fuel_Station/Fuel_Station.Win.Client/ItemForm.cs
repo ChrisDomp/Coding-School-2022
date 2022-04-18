@@ -37,8 +37,7 @@ namespace Fuel_Station.Win.Client
             GVItems.DataSource = null;
             var client = new HttpClient();
             itemList = await client.GetFromJsonAsync<List<ItemListViewModel>>("https://localhost:7203/item");
-            GVItems.DataSource = itemList;
-            GVItems.Refresh();
+
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -46,6 +45,7 @@ namespace Fuel_Station.Win.Client
             var ItemEditForm = new ItemEditForm(_itemRepo, State.New);
             ItemEditForm.ShowDialog();
             LoadItemsFromServer();
+            PopulateGrid();
         }
 
 
@@ -70,6 +70,7 @@ namespace Fuel_Station.Win.Client
             var editForm = new ItemEditForm(_itemRepo, State.Edit, itemToEdit);
             editForm.ShowDialog();
             LoadItemsFromServer();
+            PopulateGrid();
 
         }
 
@@ -80,11 +81,25 @@ namespace Fuel_Station.Win.Client
             var itemToDeleteId = (Guid)GVItems.SelectedRows[0].Cells[0].Value;
             _itemRepo.DeleteAsync(itemToDeleteId);
             LoadItemsFromServer();
+            PopulateGrid();
+        }
+
+        private void PopulateGrid()
+        {
+            GVItems.DataSource = null;
+            GVItems.DataSource = itemList;
+            GVItems.Refresh();
+            GVItems.Update();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PopulateGrid();
         }
     }
 }

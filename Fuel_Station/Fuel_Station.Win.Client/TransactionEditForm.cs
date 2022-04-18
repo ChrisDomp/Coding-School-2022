@@ -18,18 +18,20 @@ namespace Fuel_Station.Win.Client
 {
     public partial class TransactionEditForm : Form
     {
-        private readonly CustomerListViewModel _customer;
-        //private readonly IEntityRepo<Transaction> _transactionRepo;
+
+        private readonly IEntityRepo<Transaction> _transactionRepo;
         private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
         private readonly State _state;
         private Transaction _itemToEdit;
         public List<TransactionLineListViewModel> transactionLineList = new List<TransactionLineListViewModel>();
         public List<EmployeeListViewModel> employeeList = new List<EmployeeListViewModel>();
-        public List<ItemListViewModel> itemList = new List<ItemListViewModel>();
-        public TransactionEditForm(CustomerListViewModel customer, List<EmployeeListViewModel> employeeList,IEntityRepo<TransactionLine> transactionLineRepo,State state,Transaction itemToEdit)
+        public Transaction transaction;
+
+        public TransactionEditForm(Transaction transaction, List<EmployeeListViewModel> employeeList,IEntityRepo<TransactionLine> transactionLineRepo,State state,Transaction itemToEdit)
         {
             InitializeComponent();
-            _customer = customer;
+
+            this.transaction = transaction;
             _transactionLineRepo = transactionLineRepo;
             _state = state;
             _itemToEdit = itemToEdit;
@@ -62,28 +64,37 @@ namespace Fuel_Station.Win.Client
 
         }
 
-        private async Task LoadItemsFromServer()
+        private async Task LoadDataFromServerAsync() 
         {
             var client = new HttpClient();
-            itemList = await client.GetFromJsonAsync<List<ItemListViewModel>>("https://localhost:7203/Item");
+            transactionLineList = await client.GetFromJsonAsync<List<TransactionLineListViewModel>>("https://localhost:7203/TransactionLines");
 
-         
-            //var dummyEmployee = new EmployeeListViewModel()
-            //{
-            //    Name = "xs",
-            //    Surname = "ss",
-            //    SalaryPerMonth = 0,
-
-            //};
-            //employeeList.Add(dummyEmployee);
-            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            LoadItemsFromServer();
-            var form = new TransactionLineForm(itemList,State.New);
+  //for the next form to avoid misspopulation
+
+            
+            var form = new TransactionLineForm(transaction,_transactionLineRepo,State.New);
             form.ShowDialog();
+            LoadDataFromServerAsync();
+            
+        }
+
+        
+
+        private void PopulateGrid()
+        {
+            GVTransactionLines.DataSource = null;
+            GVTransactionLines.DataSource = transactionLineList;
+            GVTransactionLines.Refresh();
+            GVTransactionLines.Update();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PopulateGrid();
         }
     }
 }

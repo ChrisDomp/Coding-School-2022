@@ -29,8 +29,10 @@ namespace Fuel_Station.Win.Client
         {
             //Actual Service
             services.AddDbContext<Fuel_Station.EF.Context.ApplicationContext>();
-            services.AddScoped<IEntityRepo<Customer>, CustomerRepo>()
+            services.AddSingleton<IEntityRepo<Customer>, CustomerRepo>()
                  .AddSingleton<IEntityRepo<Item>, ItemRepo>()
+                 .AddSingleton<IEntityRepo<Transaction>,TransactionRepo>()
+                 .AddSingleton<IEntityRepo<TransactionLine>, TransactionLineRepo>()
                 .AddSingleton<MainForm>();
 
 

@@ -65,7 +65,7 @@ namespace Fuel_Station.Win.Client
                 var newItem = new Item()
                 {
                     Description = txtDescription.Text,
-                    ItemType = 0,
+                    ItemType = (ItemType)Enum.Parse(typeof(ItemType), comboType.Text.ToString()),
                     Cost = spinEditCost.Value,
                     Price = spinEditPrice.Value,
                 };
@@ -77,6 +77,7 @@ namespace Fuel_Station.Win.Client
                 _itemToEdit.Description = txtDescription.Text;
                 _itemToEdit.Cost = spinEditCost.Value;
                 _itemToEdit.Price = spinEditPrice.Value;
+                _itemToEdit.ItemType = (ItemType)Enum.Parse(typeof(ItemType), comboType.Text.ToString());
                 _itemRepo.UpdateAsync(_itemToEdit.ID, _itemToEdit);
             }
             this.Close();
