@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuel_Station.Blazor.Client"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuel_Station.Blazor.Shared", "Fuel_Station.Blazor\Shared\Fuel_Station.Blazor.Shared.csproj", "{0B77CA33-E1E6-4A23-952F-0D9C4D1D14EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuel_Station.Win.Client", "Fuel_Station.Win.Client\Fuel_Station.Win.Client.csproj", "{627D611E-CD9C-4EDA-8809-7F65702A178F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuel_Station.Win.Client", "Fuel_Station.Win.Client\Fuel_Station.Win.Client.csproj", "{627D611E-CD9C-4EDA-8809-7F65702A178F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

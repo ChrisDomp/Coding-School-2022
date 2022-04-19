@@ -83,5 +83,11 @@ namespace Fuel_Station.Win.Client
             var client = new HttpClient();
             customerList = await client.GetFromJsonAsync<List<CustomerListViewModel>>("https://localhost:7203/customer");
         }
+
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+            var form1 = new CustomerEditForm(_customerRepo, State.New);
+            form1.ShowDialog();
+        }
     }
 }
