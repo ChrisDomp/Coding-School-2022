@@ -42,7 +42,18 @@ namespace Fuel_Station.Win.Client
                 form.Show();
                
             }
-            else MessageBox.Show("Fill in the right credentials in order to have access!");
+            if ((username == "Cashier" && password == "Cashier"))
+            {
+                var form = new CashierForm(_customerRepo, _transactionLineRepo, _transactionRepo);
+                form.Show();
+            }
+            if(username =="Staff" && password == "Staff")
+            {
+                var form = new StaffForm(_itemRepo);
+                form.Show();
+            }
+            //else 
+            //    MessageBox.Show("Fill in the right credentials in order to have access!");
 
         }
     }
