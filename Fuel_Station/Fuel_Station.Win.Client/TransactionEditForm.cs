@@ -48,19 +48,12 @@ namespace Fuel_Station.Win.Client
 
         private void PopulateControls()
         {
-
-            //if (_state == State.Edit)
-            //{
-              
-            //}
             comboPayMethod.DataSource = Enum.GetValues(typeof(PaymentMethod));
             comboEmployee.DataSource = employeeList;
             comboEmployee.DisplayMember = "Surname";
             comboEmployee.ValueMember = "Id";
-
-           
+                       
         }
-
 
         private void CalcTotalValue()
         {
@@ -78,7 +71,7 @@ namespace Fuel_Station.Win.Client
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var form = new TransactionLineForm(transaction, _transactionLineRepo, State.New);
+            var form = new TransactionLineForm(transaction,transactionLineList,_transactionLineRepo, State.New);
             form.ShowDialog();
             LoadDataFromServerAsync();
             //CalcTotalValue();
@@ -126,7 +119,7 @@ namespace Fuel_Station.Win.Client
         {
             if (transaction.TotalValue > 50)
             {
-                MessageBox.Show("The only acceptable Payment Method is cash");
+                MessageBox.Show("The only acceptable Payment Method is Cash");
                 transaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), PaymentMethod.Cash.ToString());
             }
         }

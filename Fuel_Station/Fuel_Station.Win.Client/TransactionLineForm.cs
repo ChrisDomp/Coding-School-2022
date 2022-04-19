@@ -20,15 +20,17 @@ namespace Fuel_Station.Win.Client
         public List<ItemListViewModel> itemList = new List<ItemListViewModel>();
         private readonly State _state;
         private readonly IEntityRepo<TransactionLine> _transactionLineRepo;
+        private readonly List<TransactionLineListViewModel> _transactionLineList;
         public Transaction transaction;
 
 
 
-        public TransactionLineForm(Transaction transaction,IEntityRepo<TransactionLine> transactionLineRepo,State state)
+        public TransactionLineForm(Transaction transaction, List<TransactionLineListViewModel> transactionLineList, IEntityRepo<TransactionLine> transactionLineRepo,State state)
         {
             InitializeComponent();
             _state = state;
             _transactionLineRepo = transactionLineRepo;
+            _transactionLineList = transactionLineList.Where(tr => tr.TransactionID == transaction.ID).ToList();
             this.transaction = transaction;
             LoadItemsFromServerAsync();
             PopulateControls();
@@ -43,19 +45,27 @@ namespace Fuel_Station.Win.Client
 
         private void PopulateControls()
         {
-
-            if (_state == State.Edit)
-            {
-                //txtDescription.Text = _itemToEdit.Description;
-                //spinEditCost.Value = _itemToEdit.Cost;
-                //spinEditPrice.Value = _itemToEdit.Price;
-                //comboType.Text = _itemToEdit.ItemType.ToString();
-            }
-            comboItem.DataSource = itemList;
-            
+            if (FuelExists())
+                comboItem.DataSource = itemList.Where(item => item.ItemType != ItemType.Fuel).ToList(); 
+            else comboItem.DataSource = itemList;
             comboItem.DisplayMember = "Description";
             comboItem.ValueMember = "Id";
 
+        }
+
+        private bool FuelExists()
+        {
+            var itemToTest = new ItemListViewModel();
+            foreach ( var line in _transactionLineList)
+            {
+                foreach(var item in itemList)
+                {
+                    itemToTest = itemList.Single(item =>item.Id == line.ItemID);
+                    if (itemToTest.ItemType == ItemType.Fuel)
+                        return true;
+                }   
+            }
+            return false;
         }
 
         private void comboItem_SelectedIndexChanged(object sender, EventArgs e)
