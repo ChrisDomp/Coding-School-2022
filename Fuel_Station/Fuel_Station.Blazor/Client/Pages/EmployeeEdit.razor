@@ -40,8 +40,8 @@ else
         </div>
         <div class="col-md-3">
             <label for="employee-type" >Type</label>
-            <select name="employee-type" class="form-select" @bind="EmployeeItem.EmployeeType" >
-                <option >Select Item Type</option>
+            <select name="employee-type" class="form-select" @bind="EmployeeType" >
+                <option  value="-1" >Select Item Type</option>
                 @foreach (var item in Enum.GetValues(typeof(EmployeeType)))
                 {
                     <option value="@((int)item)">@item.ToString()</option>
@@ -96,7 +96,8 @@ else
     {
         if (string.IsNullOrEmpty(EmployeeItem.Name) ||
             string.IsNullOrEmpty(EmployeeItem.Surname)||
-            EmployeeItem.SalaryPerMonth <= 0)
+            EmployeeItem.SalaryPerMonth <= 0||
+            (int)EmployeeItem.EmployeeType==-1)
         {
             ShowingErrorMessages = true;
             return;
