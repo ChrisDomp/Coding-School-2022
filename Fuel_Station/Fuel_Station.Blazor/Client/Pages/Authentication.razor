@@ -1,0 +1,32 @@
+﻿<h3>Authentication</h3>
+
+<div class="row">
+        <div class="col-md-3">
+            <label class="form-label">Username</label>
+            <input class="form-control" @bind="@username" />
+        </div>
+         <div class="col-md-3">
+            <label class="form-label">Password</label>
+            <input class="form-control visually-hidden" @bind="@password" />
+        </div>
+
+ </div>
+@code {
+   private string? username;
+   private string? password;
+   private void ValidateUser(string username,string password){
+        if (username == "Manager" && password == "Manager")
+            {
+                
+            }
+            else if (username == "Cashier" && password == "Cashier")
+            {
+                
+            }
+            else if(username =="Staff" && password == "Staff")
+            {
+               
+            }
+            
+   }
+}
