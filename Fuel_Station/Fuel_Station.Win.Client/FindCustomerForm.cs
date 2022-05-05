@@ -72,9 +72,9 @@ namespace Fuel_Station.Win.Client
             this.Close();
         }
 
-        private void FindCustomerForm_Load(object sender, EventArgs e)
+        private async void FindCustomerForm_Load(object sender, EventArgs e)
         {
-            LoadItemsFromServerAsync();
+            await LoadItemsFromServerAsync();
             
         }
 
