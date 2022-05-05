@@ -38,10 +38,10 @@ namespace Fuel_Station.Win.Client
             _transactionLineRepo = transactionLineRepo;
         }
 
-        private void TransactionForm_Load(object sender, EventArgs e)
+        private async void TransactionForm_Load(object sender, EventArgs e)
         {
-            LoadItemsFromServerAsync();
-            GetDummyEmployeeAsync();
+            await LoadItemsFromServerAsync();
+            await GetDummyEmployeeAsync();
 
         }
         private async Task LoadItemsFromServerAsync()
@@ -55,13 +55,13 @@ namespace Fuel_Station.Win.Client
             
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private async void btnNew_Click(object sender, EventArgs e)
         {
             var dummyTransaction = new TransactionListViewModel();
             StoreDummyTransaction(dummyTransaction);
             var transactionEditForm = new TransactionEditForm(newTransaction,_transactionRepo,employeeList,_transactionLineRepo,State.New,null);
             transactionEditForm.ShowDialog();
-            LoadItemsFromServerAsync();
+            await LoadItemsFromServerAsync();
             PopulateGrid();
 
         }
@@ -103,14 +103,14 @@ namespace Fuel_Station.Win.Client
             dummyEmployee = employeeList[0];
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_ClickAsync(object sender, EventArgs e)
         {
 
             if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 return;
             var itemToDeleteId = (Guid)GVTransactions.SelectedRows[0].Cells[0].Value;
-            _transactionRepo.DeleteAsync(itemToDeleteId);
-            LoadItemsFromServerAsync();
+            await _transactionRepo.DeleteAsync(itemToDeleteId);
+            await LoadItemsFromServerAsync();
             PopulateGrid();
         }
 
@@ -119,9 +119,5 @@ namespace Fuel_Station.Win.Client
             this.Close();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            PopulateGrid();
-        }
     }
 }

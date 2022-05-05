@@ -44,6 +44,7 @@ namespace Fuel_Station.Win.Client
         {
             //LoadItemsFromServer();
             PopulateControls();
+            PopulateGrid();
         }
 
         private void PopulateControls()
@@ -69,13 +70,14 @@ namespace Fuel_Station.Win.Client
    
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
             var form = new TransactionLineForm(transaction,transactionLineList,_transactionLineRepo, State.New);
             form.ShowDialog();
-            LoadDataFromServerAsync();
+            await LoadDataFromServerAsync();
+            PopulateGrid();
             //CalcTotalValue();
-           
+
         }
 
         private void PopulateGrid()
@@ -93,24 +95,19 @@ namespace Fuel_Station.Win.Client
 
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            PopulateGrid();
-            //PopulateControls();
-        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private async void btnOK_ClickAsync(object sender, EventArgs e)
         {
             transaction.EmployeeID = (Guid)comboEmployee.SelectedValue;
             transaction.PaymentMethod = (PaymentMethod)Enum.Parse(typeof(PaymentMethod),comboPayMethod.SelectedValue.ToString());
 
             CheckTotalValue();
-            _transactionRepo.UpdateAsync(transaction.ID, transaction);
+            await _transactionRepo.UpdateAsync(transaction.ID, transaction);
            
             this.Close();
         }
@@ -124,13 +121,13 @@ namespace Fuel_Station.Win.Client
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_ClickAsync(object sender, EventArgs e)
         {
             if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 return;
             var itemToDeleteId = (Guid)GVTransactionLines.SelectedRows[0].Cells[0].Value;
-            _transactionLineRepo.DeleteAsync(itemToDeleteId);
-            LoadDataFromServerAsync();
+            await _transactionLineRepo.DeleteAsync(itemToDeleteId);
+            await LoadDataFromServerAsync();
             PopulateGrid();
         }
        

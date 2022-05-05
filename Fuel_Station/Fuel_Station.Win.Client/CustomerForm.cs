@@ -27,9 +27,10 @@ namespace Fuel_Station.Win.Client
 
 
 
-        private void CustomersForm_Load(object sender, EventArgs e)
+        private async void CustomersForm_Load(object sender, EventArgs e)
         {
-            LoadItemsFromServer();
+            await LoadItemsFromServer();
+            PopulateGrid();
         }
 
         private async Task LoadItemsFromServer()
@@ -40,21 +41,21 @@ namespace Fuel_Station.Win.Client
            
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private async void btnNew_Click(object sender, EventArgs e)
         {
             var editForm = new CustomerEditForm(_customerRepo,State.New);
             editForm.ShowDialog();
-            LoadItemsFromServer();
+            await LoadItemsFromServer();
             PopulateGrid();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_Click(object sender, EventArgs e)
         {
             if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 return;
             var itemToDeleteId = (Guid)GVCustomers.SelectedRows[0].Cells[0].Value;
-            _customerRepo.DeleteAsync(itemToDeleteId);
-            LoadItemsFromServer();
+            await _customerRepo.DeleteAsync(itemToDeleteId);
+            await LoadItemsFromServer();
             PopulateGrid();
         }
 
@@ -65,7 +66,7 @@ namespace Fuel_Station.Win.Client
             this.Close();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private async void btnEdit_Click(object sender, EventArgs e)
         {
             var itemToEditId = (Guid)GVCustomers.SelectedRows[0].Cells[0].Value;
             var itemToEdit = new Customer()
@@ -78,7 +79,7 @@ namespace Fuel_Station.Win.Client
             };
             var editForm = new CustomerEditForm(_customerRepo,State.Edit, itemToEdit);
             editForm.ShowDialog();
-            LoadItemsFromServer();
+            await LoadItemsFromServer();
             PopulateGrid();
       }
 
@@ -90,9 +91,5 @@ namespace Fuel_Station.Win.Client
             GVCustomers.Update();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            PopulateGrid();
-        }
     }
 }

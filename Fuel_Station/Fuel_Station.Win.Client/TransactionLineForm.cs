@@ -32,8 +32,7 @@ namespace Fuel_Station.Win.Client
             _transactionLineRepo = transactionLineRepo;
             _transactionLineList = transactionLineList.Where(tr => tr.TransactionID == transaction.ID).ToList();
             this.transaction = transaction;
-            LoadItemsFromServerAsync();
-            PopulateControls();
+
         }
 
         private async Task LoadItemsFromServerAsync()
@@ -119,7 +118,7 @@ namespace Fuel_Station.Win.Client
 
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private async void btnOK_Click(object sender, EventArgs e)
         {
             var newTransactionLine = new TransactionLine()
             {
@@ -133,7 +132,7 @@ namespace Fuel_Station.Win.Client
                 TotalValue = GetTotalValue(),
 
             };
-            _transactionLineRepo.CreateAsync(newTransactionLine);
+            await _transactionLineRepo.CreateAsync(newTransactionLine);
             this.Close();
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -141,8 +140,9 @@ namespace Fuel_Station.Win.Client
             this.Close();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private async void TransactionLineForm_Load(object sender, EventArgs e)
         {
+            await LoadItemsFromServerAsync();
             PopulateControls();
         }
     }

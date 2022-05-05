@@ -37,7 +37,6 @@
             this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.txtTotalValue = new DevExpress.XtraEditors.TextEdit();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
-            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -52,7 +51,6 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -74,7 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
@@ -90,7 +87,6 @@
             this.layoutControl1.Controls.Add(this.btnAdd);
             this.layoutControl1.Controls.Add(this.txtTotalValue);
             this.layoutControl1.Controls.Add(this.btnDelete);
-            this.layoutControl1.Controls.Add(this.btnRefresh);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -134,7 +130,7 @@
             this.btnOK.StyleController = this.layoutControl1;
             this.btnOK.TabIndex = 8;
             this.btnOK.Text = "OK";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.btnOK.Click += new System.EventHandler(this.btnOK_ClickAsync);
             // 
             // btnCancel
             // 
@@ -173,17 +169,7 @@
             this.btnDelete.StyleController = this.layoutControl1;
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Delete";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(12, 234);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(92, 22);
-            this.btnRefresh.StyleController = this.layoutControl1;
-            this.btnRefresh.TabIndex = 5;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_ClickAsync);
             // 
             // Root
             // 
@@ -203,7 +189,6 @@
             this.layoutControlItem8,
             this.layoutControlItem1,
             this.layoutControlItem5,
-            this.layoutControlItem9,
             this.emptySpaceItem1,
             this.simpleLabelItem1,
             this.emptySpaceItem3});
@@ -323,21 +308,12 @@
             this.layoutControlItem5.Text = "Employee";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(83, 13);
             // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.btnRefresh;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 222);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(96, 26);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(96, 222);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 222);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(75, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(171, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // simpleLabelItem1
@@ -384,7 +360,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
@@ -417,8 +392,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private ComboBox comboEmployee;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraEditors.SimpleButton btnRefresh;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;

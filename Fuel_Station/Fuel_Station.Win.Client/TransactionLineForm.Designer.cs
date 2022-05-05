@@ -53,8 +53,6 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem8 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -79,7 +77,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +90,6 @@
             this.layoutControl1.Controls.Add(this.txtDiscountPercentage);
             this.layoutControl1.Controls.Add(this.txtDiscountValue);
             this.layoutControl1.Controls.Add(this.txtTotalValue);
-            this.layoutControl1.Controls.Add(this.btnRefresh);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Margin = new System.Windows.Forms.Padding(2);
@@ -206,7 +202,6 @@
             this.layoutControlItem8,
             this.emptySpaceItem8,
             this.layoutControlItem1,
-            this.layoutControlItem9,
             this.emptySpaceItem3});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(467, 225);
@@ -340,31 +335,12 @@
             this.layoutControlItem1.Text = " Item";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(73, 13);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(12, 191);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(108, 22);
-            this.btnRefresh.StyleController = this.layoutControl1;
-            this.btnRefresh.TabIndex = 7;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.btnRefresh;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 179);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(112, 26);
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
             // emptySpaceItem3
             // 
             this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(112, 179);
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 179);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(113, 26);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(225, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // TransactionLineForm
@@ -376,6 +352,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TransactionLineForm";
             this.Text = "TransactionLineForm";
+            this.Load += new System.EventHandler(this.TransactionLineForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit1.Properties)).EndInit();
@@ -399,7 +376,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
 
@@ -432,8 +408,6 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem8;
         private ComboBox comboItem;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.SimpleButton btnRefresh;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
     }
 }

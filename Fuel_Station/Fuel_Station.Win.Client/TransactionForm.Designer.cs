@@ -33,13 +33,11 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -49,7 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +56,6 @@
             this.dataLayoutControl1.Controls.Add(this.btnNew);
             this.dataLayoutControl1.Controls.Add(this.btnDelete);
             this.dataLayoutControl1.Controls.Add(this.btnClose);
-            this.dataLayoutControl1.Controls.Add(this.btnRefresh);
             this.dataLayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataLayoutControl1.Location = new System.Drawing.Point(0, 0);
             this.dataLayoutControl1.Margin = new System.Windows.Forms.Padding(2);
@@ -103,7 +99,7 @@
             this.btnDelete.StyleController = this.dataLayoutControl1;
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_ClickAsync);
             // 
             // btnClose
             // 
@@ -116,16 +112,6 @@
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(12, 191);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(74, 22);
-            this.btnRefresh.StyleController = this.dataLayoutControl1;
-            this.btnRefresh.TabIndex = 2;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -135,7 +121,6 @@
             this.layoutControlItem5,
             this.layoutControlItem1,
             this.layoutControlItem4,
-            this.layoutControlItem6,
             this.emptySpaceItem1});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(467, 225);
@@ -178,21 +163,12 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.btnRefresh;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 179);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(78, 26);
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(78, 179);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 179);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(108, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(186, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // TransactionForm
@@ -213,7 +189,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
 
@@ -231,8 +206,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private DevExpress.XtraEditors.SimpleButton btnRefresh;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }

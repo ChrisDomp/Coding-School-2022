@@ -27,9 +27,9 @@ namespace Fuel_Station.Win.Client
             _itemRepo = itemRepo;
         }
 
-        private void ItemForm_Load(object sender, EventArgs e)
+        private async void ItemForm_Load(object sender, EventArgs e)
         {
-            LoadItemsFromServer();
+            await LoadItemsFromServer();
         }
 
         private async Task LoadItemsFromServer()
@@ -37,14 +37,14 @@ namespace Fuel_Station.Win.Client
             GVItems.DataSource = null;
             var client = new HttpClient();
             itemList = await client.GetFromJsonAsync<List<ItemListViewModel>>("https://localhost:7203/item");
-
+            PopulateGrid();
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private async void btnNew_Click(object sender, EventArgs e)
         {
             var ItemEditForm = new ItemEditForm(_itemRepo, State.New);
             ItemEditForm.ShowDialog();
-            LoadItemsFromServer();
+            await LoadItemsFromServer();
             PopulateGrid();
         }
 
@@ -54,7 +54,7 @@ namespace Fuel_Station.Win.Client
             this.Close();
         }
 
-        private void btnEdit_Click_1(object sender, EventArgs e)
+        private async void btnEdit_Click_1Async(object sender, EventArgs e)
         {
             var itemToEditId = (Guid)GVItems.SelectedRows[0].Cells[0].Value;
             var itemToEdit = new Item()
@@ -69,18 +69,18 @@ namespace Fuel_Station.Win.Client
             };
             var editForm = new ItemEditForm(_itemRepo, State.Edit, itemToEdit);
             editForm.ShowDialog();
-            LoadItemsFromServer();
+            await LoadItemsFromServer();
             PopulateGrid();
 
         }
 
-        private void btnDelete_Click_1(object sender, EventArgs e)
+        private async void btnDelete_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.No == MessageBox.Show("Do you want to delete the selected item ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 return;
             var itemToDeleteId = (Guid)GVItems.SelectedRows[0].Cells[0].Value;
-            _itemRepo.DeleteAsync(itemToDeleteId);
-            LoadItemsFromServer();
+            await _itemRepo.DeleteAsync(itemToDeleteId);
+            await LoadItemsFromServer();
             PopulateGrid();
         }
 
@@ -97,10 +97,6 @@ namespace Fuel_Station.Win.Client
             this.Close();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            PopulateGrid();
-        }
     }
 }
 
